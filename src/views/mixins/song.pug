@@ -1,8 +1,8 @@
 mixin song(song)
     div
         h4
-            a(href=`/music/${music.id}`)=music.title
-        span=music.artist 
-        p=music.description
-        small=music.createAt
+            a(href=`/music/${song.id}`)=song.title
+        span=song.artist 
+        p=song.description
+        small=song.createAt
         hr
