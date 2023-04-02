@@ -1,0 +1,8 @@
+mixin music(music)
+    div
+        h4
+            a(href=`/music/${music.id}`)=music.title
+        span=music.artist 
+        p=music.description
+        small=music.createAt
+        hr

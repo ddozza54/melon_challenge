@@ -1,0 +1,10 @@
+extends base
+
+block content
+    h4 Upload Music
+    form(method ="POST")
+        input(name="title", placeholder="Title", required, type="text")
+        input(name="artist", placeholder="Artist", required, type="text")
+        input(name="description", placeholder="Description", type="text")
+        input(type="file")
+        input(type="submit", value="Upload Music")

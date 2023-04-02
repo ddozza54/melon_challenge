@@ -6,8 +6,11 @@ html(lang="ko")
         link(rel="stylesheet", href="/static/css/styles.css")
     body
         include partials/header                
+        include partials/nav
+
         main
             block content
+            
         include partials/footer
     script(src="/static/js/main.js") 
     block scripts
