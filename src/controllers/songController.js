@@ -6,7 +6,8 @@ export const home = async (req, res) => {
 };
 
 export const musicHome = async (req, res) => {
-  return res.render("musicHome", { pageTitle: "musicHome" });
+  const songs = await Song.find({});
+  return res.render("musicHome", { pageTitle: "musicHome", songs });
 };
 
 export const getMusicUpload = async (req, res) => {
@@ -16,7 +17,7 @@ export const getMusicUpload = async (req, res) => {
 export const postMusicUpload = async (req, res) => {
   const { title, artist, description } = req.body;
 
-  const music = new Song({
+  const song = new Song({
     title,
     artist,
     description,
@@ -27,7 +28,10 @@ export const postMusicUpload = async (req, res) => {
     },
   });
 
-  console.log(music);
+  await song.save();
+
+  console.log(song);
+
   // try {
   //   await Song.create({
   //     title,
