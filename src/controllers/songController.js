@@ -1,3 +1,4 @@
+import { async } from "regenerator-runtime";
 import Song from "../models/Song";
 import User from "../models/User";
 
@@ -20,9 +21,13 @@ export const postMusicUpload = async (req, res) => {
   } = req;
   const imgfileObj = req.files.imgfile;
   const imgpath = imgfileObj.map((v) => v.path)[0];
+  const songfileObj = req.files.songfile;
+  const songpath = songfileObj.map((v) => v.path)[0];
+
   const song = new Song({
     title,
     imgpath,
+    songpath,
     artist,
     description,
     createAt: Date.now(),
@@ -35,15 +40,26 @@ export const postMusicUpload = async (req, res) => {
   await song.save();
 
   console.log(imgpath);
+  console.log(songpath);
 
   return res.redirect("/music");
 };
 
 export const play = async (req, res) => {
-  return res.send("music playing");
-  // return res.render("customPlaylist", { pageTitle: "customPlaylist" });
+  return res.render("musicPlayer", { pageTitle: "musicPlayer" });
 };
 
 export const customPlaylist = async (req, res) => {
   return res.render("customPlaylist", { pageTitle: "customPlaylist" });
+};
+
+export const registerView = async (req, res) => {
+  const { id } = req.params;
+  const song = await Song.findById(id);
+  if (!song) {
+    return res.status(404);
+  }
+  song.meta.views += 1;
+  await song.save();
+  return res.status(200);
 };
