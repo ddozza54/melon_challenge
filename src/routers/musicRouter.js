@@ -15,7 +15,6 @@ musicRouter
   .route("/upload")
   .get(getMusicUpload)
   .post(
-    // uploadFiles.single("imgfile"),
     uploadFiles.fields([{ name: "imgfile" }, { name: "songfile" }]),
     postMusicUpload
   );

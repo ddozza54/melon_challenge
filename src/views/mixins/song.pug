@@ -1,5 +1,6 @@
 mixin song(song)
     div
+        img(src='/'+song.imgpath, width="100", height="100")
         h4
             a(href=`/music/${song.id}`)=song.title
         span=song.artist 

@@ -17,11 +17,12 @@ export const getMusicUpload = async (req, res) => {
 export const postMusicUpload = async (req, res) => {
   const {
     body: { title, artist, description },
-    files,
   } = req;
-
+  const imgfileObj = req.files.imgfile;
+  const imgpath = imgfileObj.map((v) => v.path)[0];
   const song = new Song({
     title,
+    imgpath,
     artist,
     description,
     createAt: Date.now(),
@@ -33,23 +34,8 @@ export const postMusicUpload = async (req, res) => {
 
   await song.save();
 
-  console.log(song);
-  console.log(files);
+  console.log(imgpath);
 
-  // try {
-  //   await Song.create({
-  //     title,
-  //     description,
-  //   });
-  //   return res.direct("/");
-  // } catch {
-  //   return res
-  //     .status(400)
-  //     .render("musicUpload", {
-  //       pageTitle: "musicUpload",
-  //       errorMessage: error._message,
-  //     });
-  // }
   return res.redirect("/music");
 };
 
