@@ -11,10 +11,13 @@ const musicRouter = express.Router();
 
 musicRouter.get("/:id/play", play);
 musicRouter.get("/playlist", customPlaylist);
-musicRouter.route("/upload").get(getMusicUpload).post(
-  // uploadFiles.fields([{ imgfile: "imgfile" }, { songfile: "songfile" }]),
-  uploadFiles.single("imgfile"),
-  postMusicUpload
-);
+musicRouter
+  .route("/upload")
+  .get(getMusicUpload)
+  .post(
+    // uploadFiles.single("imgfile"),
+    uploadFiles.fields([{ name: "imgfile" }, { name: "songfile" }]),
+    postMusicUpload
+  );
 
 export default musicRouter;

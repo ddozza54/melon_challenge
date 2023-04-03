@@ -17,7 +17,7 @@ export const getMusicUpload = async (req, res) => {
 export const postMusicUpload = async (req, res) => {
   const {
     body: { title, artist, description },
-    file: { path },
+    files,
   } = req;
 
   const song = new Song({
@@ -34,6 +34,7 @@ export const postMusicUpload = async (req, res) => {
   await song.save();
 
   console.log(song);
+  console.log(files);
 
   // try {
   //   await Song.create({
