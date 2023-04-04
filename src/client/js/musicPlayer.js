@@ -3,7 +3,7 @@ const musicPlayer = document.getElementById("musicPlayer");
 
 const handlePlay = async () => {
   const { id } = musicPlayer.dataset;
-  await fetch(`api/music/${id}/view`, { method: "POST" });
+  await fetch(`/api/music/${id}/view`, { method: "POST" });
 };
 
-audio.addEventListener("ended", handlePlay);
+audio.addEventListener("play", handlePlay);

@@ -32,15 +32,12 @@ export const postMusicUpload = async (req, res) => {
     description,
     createAt: Date.now(),
     meta: {
-      views: 10,
+      views: 0,
       rating: 0,
     },
   });
 
   await song.save();
-
-  console.log(imgpath);
-  console.log(songpath);
 
   return res.redirect("/music");
 };
@@ -66,7 +63,7 @@ export const registerView = async (req, res) => {
   if (!song) {
     return res.sendStatus(404);
   }
-  song.meta.views = song.meta.views + 1;
+  song.meta.views += 1;
   await song.save();
   return res.sendStatus(200);
 };
