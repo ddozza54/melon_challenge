@@ -1,18 +1,19 @@
 import { async } from "regenerator-runtime";
 import Song from "../models/Song";
 import User from "../models/User";
+const siteName = "HanSaRang Music";
 
 export const home = async (req, res) => {
-  return res.render("home", { pageTitle: "Home" });
+  return res.render("home", { pageTitle: "Home", siteName });
 };
 
 export const musicHome = async (req, res) => {
-  const songs = await Song.find({});
-  return res.render("musicHome", { pageTitle: "musicHome", songs });
+  const songs = await Song.find({}).sort({ views: "desc" });
+  return res.render("musicHome", { pageTitle: "musicHome", songs, siteName });
 };
 
 export const getMusicUpload = async (req, res) => {
-  return res.render("musicUpload", { pageTitle: "musicUpload" });
+  return res.render("musicUpload", { pageTitle: "musicUpload", siteName });
 };
 
 export const postMusicUpload = async (req, res) => {
@@ -49,21 +50,24 @@ export const play = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Song is not Found." });
   }
 
-  return res.render("musicPlayer", { pageTitle: song.title, song });
+  return res.render("musicPlayer", { pageTitle: song.title, song, siteName });
 };
 
 export const customPlaylist = async (req, res) => {
-  return res.render("customPlaylist", { pageTitle: "customPlaylist" });
+  return res.render("customPlaylist", {
+    pageTitle: "customPlaylist",
+    siteName,
+  });
 };
 
 export const registerView = async (req, res) => {
   const { id } = req.params;
   const song = await Song.findById(id);
-  console.log(song);
+
   if (!song) {
     return res.sendStatus(404);
   }
-  song.meta.views += 1;
+  song.views += 1;
   await song.save();
   return res.sendStatus(200);
 };

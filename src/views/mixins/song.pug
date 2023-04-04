@@ -6,7 +6,7 @@ mixin song(song)
         span=song.artist 
         p=song.description
         small=song.createAt
-        span=song.meta.views
+        span=song.views
         audio(controls src='/'+song.songpath)
 
         hr

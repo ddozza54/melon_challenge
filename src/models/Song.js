@@ -7,8 +7,8 @@ const songSchema = new mongoose.Schema({
   artist: { type: String, trim: true, required: true },
   description: { type: String, trim: true },
   createdAt: { type: Date, required: true, default: Date.now },
+  views: { type: Number, default: 0, required: true },
   meta: {
-    views: { type: Number, default: 0, required: true },
     rating: { type: Number, default: 0, required: true },
   },
 });
