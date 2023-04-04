@@ -46,7 +46,13 @@ export const postMusicUpload = async (req, res) => {
 };
 
 export const play = async (req, res) => {
-  return res.render("musicPlayer", { pageTitle: "musicPlayer" });
+  const { id } = req.params;
+  const song = await Song.findById(id);
+  if (!song) {
+    return res.status(404).render("404", { pageTitle: "Song is not Found." });
+  }
+  console.log(song);
+  return res.render("musicPlayer", { pageTitle: song.title, song });
 };
 
 export const customPlaylist = async (req, res) => {

@@ -9,7 +9,7 @@ import { uploadFiles } from "../middlewares";
 
 const musicRouter = express.Router();
 
-musicRouter.get("/:id/play", play);
+musicRouter.get("/:id([0-9a-f]{24})", play);
 musicRouter.get("/playlist", customPlaylist);
 musicRouter
   .route("/upload")
