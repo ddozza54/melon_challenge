@@ -1,15 +1,15 @@
 extends base
 
 block content
-    h4 Music Player
-    h4
-        a(href=`/music`) 목록으로 돌아가기
-
-    h1=pageTitle
-    h2=song.artist
-
-    img(src='/'+song.imgpath)
-    audio(controls src='/'+song.songpath) 
+    div#musicPlayer(data-id=song._id)
+        h4
+            a(href=`/music`) 목록으로 돌아가기
+        button ❤️
+        img(src='/'+song.imgpath)
+        h1=pageTitle
+        h2=song.artist
+        audio(controls src='/'+song.songpath) 
+        span view: #{song.meta.views}
 
 
 block scripts

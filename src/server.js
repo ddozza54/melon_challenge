@@ -3,9 +3,10 @@ import morgan from "morgan";
 import session from "express-session";
 import flash from "express-flash";
 import MongoStore from "connect-mongo";
-import { localsMiddleware } from "./middlewares";
 import rootRouter from "./routers/rootRouter";
 import musicRouter from "./routers/musicRouter";
+import apiRouter from "./routers/apiRouter";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 const logger = morgan("dev");
@@ -30,5 +31,6 @@ app.use("/static", express.static("assets"));
 
 app.use("/", rootRouter);
 app.use("/music", musicRouter);
+app.use("/api", apiRouter);
 
 export default app;

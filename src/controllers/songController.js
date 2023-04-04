@@ -32,7 +32,7 @@ export const postMusicUpload = async (req, res) => {
     description,
     createAt: Date.now(),
     meta: {
-      views: 0,
+      views: 10,
       rating: 0,
     },
   });
@@ -51,7 +51,7 @@ export const play = async (req, res) => {
   if (!song) {
     return res.status(404).render("404", { pageTitle: "Song is not Found." });
   }
-  console.log(song);
+
   return res.render("musicPlayer", { pageTitle: song.title, song });
 };
 
@@ -62,10 +62,11 @@ export const customPlaylist = async (req, res) => {
 export const registerView = async (req, res) => {
   const { id } = req.params;
   const song = await Song.findById(id);
+  console.log(song);
   if (!song) {
-    return res.status(404);
+    return res.sendStatus(404);
   }
-  song.meta.views += 1;
+  song.meta.views = song.meta.views + 1;
   await song.save();
-  return res.status(200);
+  return res.sendStatus(200);
 };
