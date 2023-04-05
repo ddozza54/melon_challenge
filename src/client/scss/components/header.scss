@@ -1,0 +1,33 @@
+header {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(246, 11, 105, 1) 0%,
+    rgba(242, 183, 40, 1) 27%,
+    rgba(239, 249, 0, 1) 47%,
+    rgba(136, 251, 144, 1) 100%
+  );
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  h1 {
+    white-space: nowrap;
+    animation: textFlow 20s linear infinite;
+  }
+  border-radius: $br $br 0 0;
+}
+
+@keyframes textFlow {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

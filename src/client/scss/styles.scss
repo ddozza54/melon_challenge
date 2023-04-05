@@ -3,12 +3,10 @@
 @import "./config/_reset.scss";
 
 // Components
-
-// Example: @import "./components/message.scss";
+@import "./components/header.scss";
 
 // Screens
-
-// Example: @import "./screens/search.scss";
+@import "./screens/home.scss";
 
 // Defaults
 a {
@@ -21,4 +19,17 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: $bg;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 300px;
+  height: 500px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: $br;
 }
