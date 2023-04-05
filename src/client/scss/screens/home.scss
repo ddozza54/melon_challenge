@@ -1,9 +1,22 @@
 .home {
   padding: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   img {
     width: 80%;
+  }
+  .homebar {
+    width: 20%;
+    height: inherit;
+    writing-mode: vertical-lr;
+    font-size: 20px;
+  }
+  .contents {
+    width: 80%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
   }
 }
