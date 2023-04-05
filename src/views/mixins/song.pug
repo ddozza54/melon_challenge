@@ -1,11 +1,13 @@
 mixin song(song)
-    div
-        img(src='/'+song.imgpath, width="100", height="100")
-        h4
-            a(href=`/music/${song.id}`)=song.title
-        span=song.artist 
-        p=song.description
-        small=song.createAt
-        span=song.views
+    div.song
+        img(src='/'+song.imgpath)
+        div.song_title
+            h4
+                a(href=`/music/${song.id}`)=song.title
+            div
+                span=song.artist 
+                span 
+                    i.fas.fa-headphones #{song.views}
+        button 👍
 
         hr

@@ -1,12 +1,13 @@
 extends base
 
 block content
-    div#musicPlayer(data-id=song._id)
-        h4
-            a(href=`/music`) 목록으로 돌아가기
-        button ❤️
+    div#musicPlayer(data-id=song._id).content
+        div
+            h4
+                a(href=`/music`) &larr; 목록으로 돌아가기
+            button ❤️
         img(src='/'+song.imgpath)
-        h1=pageTitle
+        h1=song.title
         h2=song.artist
         audio(controls src='/'+song.songpath) 
         span view: #{song.views}

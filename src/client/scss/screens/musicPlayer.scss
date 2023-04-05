@@ -1,0 +1,25 @@
+#musicPlayer {
+  font-size: 20px;
+  div {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h4,
+    button {
+      background-color: darkseagreen;
+      padding: 5px;
+      border: 3px solid black;
+    }
+  }
+  img {
+    margin: 20px 0;
+    width: 90%;
+    border: 4mm ridge rgb(246, 56, 205);
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: bolder;
+  }
+}

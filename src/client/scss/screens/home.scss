@@ -4,29 +4,32 @@
   display: flex;
   justify-content: space-between;
   img {
-    width: 80%;
+    width: 85%;
     border: 4mm ridge rgba(211, 220, 50, 0.6);
   }
   .homebar {
     width: 20%;
     height: 100%;
     writing-mode: vertical-lr;
-    font-size: 50px;
+    justify-self: center;
+    font-size: 70px;
     font-family: "East Sea Dokdo", cursive;
+    color: blue;
     background-color: aquamarine;
     border-radius: $br 0 0 $br;
     span {
       margin-top: 100px;
     }
   }
-  .contents {
-    width: 80%;
-    height: inherit;
+  .homeContents {
+    width: 95%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
-    padding-right: 10px;
+    margin-top: 80px;
+    padding: 0 10px;
     button {
       border: 2px solid black;
     }
