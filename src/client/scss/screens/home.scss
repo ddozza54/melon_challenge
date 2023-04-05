@@ -1,15 +1,23 @@
 .home {
-  padding: 10px;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   img {
     width: 80%;
+    border: 4mm ridge rgba(211, 220, 50, 0.6);
   }
   .homebar {
     width: 20%;
-    height: inherit;
+    height: 100%;
     writing-mode: vertical-lr;
-    font-size: 20px;
+    font-size: 50px;
+    font-family: "East Sea Dokdo", cursive;
+    background-color: aquamarine;
+    border-radius: $br 0 0 $br;
+    span {
+      margin-top: 100px;
+    }
   }
   .contents {
     width: 80%;
@@ -18,5 +26,14 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
+    padding-right: 10px;
+    button {
+      border: 2px solid black;
+    }
+    li {
+      background-color: blueviolet;
+      padding: 10px;
+      margin-bottom: 5px;
+    }
   }
 }

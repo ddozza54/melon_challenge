@@ -16,9 +16,10 @@ header {
   font-weight: 600;
   overflow-x: hidden;
   overflow-y: hidden;
+  position: absolute;
   h1 {
     white-space: nowrap;
-    animation: textFlow 20s linear infinite;
+    animation: textFlow 5s linear infinite;
   }
   border-radius: $br $br 0 0;
 }
