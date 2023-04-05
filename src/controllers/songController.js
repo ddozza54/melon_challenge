@@ -50,12 +50,12 @@ export const play = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Song is not Found." });
   }
 
-  return res.render("musicPlayer", { pageTitle: song.title, song, siteName });
+  return res.render("musicPlayer", { pageTitle: song.title, song });
 };
 
-export const customPlaylist = async (req, res) => {
-  return res.render("customPlaylist", {
-    pageTitle: "customPlaylist",
+export const playlist = async (req, res) => {
+  return res.render("playlist", {
+    pageTitle: "Custom playlist",
     siteName,
   });
 };

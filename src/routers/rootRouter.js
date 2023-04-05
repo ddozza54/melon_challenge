@@ -1,17 +1,10 @@
 import express from "express";
-import {
-  home,
-  musicHome,
-  getMusicUpload,
-  postMusicUpload,
-} from "../controllers/songController";
-
+import { home } from "../controllers/songController";
+import { login, join } from "../controllers/userController";
 const rootRouter = express.Router();
 
 rootRouter.get("/", home);
-rootRouter.get("/music", musicHome);
-
-// rootRouter.get("/login", login);
-// rootRouter.get("/join", join);
+rootRouter.get("/login", login);
+rootRouter.get("/join", join);
 
 export default rootRouter;
