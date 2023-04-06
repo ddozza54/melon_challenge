@@ -1,5 +1,7 @@
-#musicPlayer {
+#songList {
+  height: 400px;
+  width: 90%;
   display: flex;
   flex-direction: column;
-  overflow: overlay;
+  padding: 15px 0;
 }

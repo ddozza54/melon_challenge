@@ -2,7 +2,7 @@ extends baseNav
 include mixins/song
 
 block content
-    div.content
+    div#songList
         each song in songs
             +song(song)
         else

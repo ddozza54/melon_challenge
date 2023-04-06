@@ -1,16 +1,21 @@
 extends base
 
 block content
-    div#musicPlayer(data-id=song._id).content
+    div#musicPlayer(data-id=song._id)
         div
             h4
                 a(href=`/music`) &larr; 목록으로 돌아가기
-            button ❤️
+            button 👍
         img(src='/'+song.imgpath)
         h1=song.title
         h2=song.artist
-        audio(controls src='/'+song.songpath) 
-        span view: #{song.views}
+        audio(controls src='/'+song.songpath autoplay) 
+        span 재생 수: #{song.views}
+        span 찜한 수: #{song.like}
+
+
+block navBlock 
+    include partials/nav
 
 
 block scripts
