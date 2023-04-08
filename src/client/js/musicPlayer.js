@@ -3,7 +3,7 @@ const musicPlayer = document.getElementById("musicPlayer");
 const playBtn = document.getElementById("play");
 const muteBtn = document.getElementById("mute");
 const time = document.getElementById("time");
-const volume = document.getElementById("volume");
+const volumeRange = document.getElementById("volume");
 
 const handleViews = async () => {
   const { id } = musicPlayer.dataset;
@@ -15,5 +15,17 @@ const handlePlayClick = (e) => {
   playBtn.innerText = audio.paused ? "Play" : "Pause";
 };
 
+const handleMuteClick = () => {
+  if (audio.muted) {
+    audio.muted = false;
+    volumeRange = 0.5;
+  } else {
+    audio.muted = true;
+    volumeRange = 0;
+  }
+  muteBtn.innerText = audio.muted ? "Unmuted" : "Muted";
+};
+
 audio.addEventListener("play", handleViews);
 playBtn.addEventListener("click", handlePlayClick);
+muteBtn.addEventListener("click", handleMuteClick);
