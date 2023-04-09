@@ -20,10 +20,8 @@ const handlePlayClick = (e) => {
 const handleMuteClick = () => {
   if (audio.muted) {
     audio.muted = false;
-    volumeRange = 0.5;
   } else {
     audio.muted = true;
-    volumeRange = 0;
   }
   muteBtn.innerText = audio.muted ? "Unmuted" : "Muted";
 };
@@ -32,6 +30,10 @@ const handleVolumeChange = (e) => {
   const {
     target: { value },
   } = e;
+  if (audio.muted) {
+    audio.muted = false;
+    muteBtn.innerText = "Muted";
+  }
   audio.volume = value;
 };
 
