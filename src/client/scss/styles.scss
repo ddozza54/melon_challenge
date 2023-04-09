@@ -32,14 +32,6 @@ body {
   align-items: center;
 }
 
-main {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #app {
   width: 400px;
   height: 700px;
@@ -55,6 +47,14 @@ main {
   flex-direction: column;
   border-radius: $br;
   position: relative;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .block {

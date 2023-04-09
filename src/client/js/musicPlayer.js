@@ -5,6 +5,8 @@ const muteBtn = document.getElementById("mute");
 const time = document.getElementById("time");
 const volumeRange = document.getElementById("volume");
 
+audio.volume = 0.5;
+
 const handleViews = async () => {
   const { id } = musicPlayer.dataset;
   await fetch(`/api/music/${id}/view`, { method: "POST" });
@@ -26,6 +28,14 @@ const handleMuteClick = () => {
   muteBtn.innerText = audio.muted ? "Unmuted" : "Muted";
 };
 
+const handleVolumeChange = (e) => {
+  const {
+    target: { value },
+  } = e;
+  audio.volume = value;
+};
+
 audio.addEventListener("play", handleViews);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
+volumeRange.addEventListener("change", handleVolumeChange);
