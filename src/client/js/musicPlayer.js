@@ -5,7 +5,8 @@ const muteBtn = document.getElementById("mute");
 const time = document.getElementById("time");
 const volumeRange = document.getElementById("volume");
 
-audio.volume = 0.5;
+let volumeValue = 0.5;
+audio.volume = volumeValue;
 
 const handleViews = async () => {
   const { id } = musicPlayer.dataset;
@@ -24,6 +25,7 @@ const handleMuteClick = () => {
     audio.muted = true;
   }
   muteBtn.innerText = audio.muted ? "Unmuted" : "Muted";
+  volumeRange.value = audio.muted ? 0 : volumeValue;
 };
 
 const handleVolumeChange = (e) => {
@@ -34,6 +36,7 @@ const handleVolumeChange = (e) => {
     audio.muted = false;
     muteBtn.innerText = "Muted";
   }
+  volumeValue = value;
   audio.volume = value;
 };
 
