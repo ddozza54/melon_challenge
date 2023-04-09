@@ -60,6 +60,7 @@ const handleLoadedMetadata = () => {
 
 const handleTimeUpdate = () => {
   currentTime.innerText = formatTime(Math.floor(audio.currentTime));
+  timeline.value = Math.floor(audio.currentTime);
 };
 
 const formatTime = (seconds) =>
@@ -72,7 +73,7 @@ const handleTimeLine = (e) => {
   audio.currentTime = value;
 };
 
-audio.addEventListener("play", handleViews);
+audio.addEventListener("ended", handleViews);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("change", handleVolumeChange);
