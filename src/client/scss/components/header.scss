@@ -1,6 +1,6 @@
 header {
   width: 100%;
-  padding: 15px 0;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -19,6 +19,8 @@ header {
   overflow-y: hidden;
   position: absolute;
   h1 {
+    position: absolute;
+    padding: 18px;
     white-space: nowrap;
     animation: textFlow 10s linear infinite;
   }
