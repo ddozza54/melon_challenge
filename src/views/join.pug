@@ -1,6 +1,8 @@
 extends baseNav
 
 block content 
+    if errorMessage
+        span=errorMessage
     h1 회원 가입
     form(method="POST")
         label(for="username") ID
@@ -11,12 +13,14 @@ block content
         input(name="password2", type="password", id="password2", placeholder="비밀번호를 한번 더 입력하세요", required=true)
         label(for="name") 이름 혹은 닉네임
         input(name="name", type="text", id="name", placeholder="이름을 입력하세요", required=true)
+        label(for="birth") 생년월일
+        input(name="birth", type="date", id="birth", required=true)
         label(for="email") 이메일
         input(name="email", type="email", id="email", placeholder="ex) abc@naver.com", required=true)
         label(for="location") 지역
         input(name="location", type="text", id="password", placeholder="ex) 서울", required=true)
        
-        input(type="submit", value="로그인")
+        input(type="submit", value="가입하기")
 
     hr
     span 이미 가입 하셨나요? 
