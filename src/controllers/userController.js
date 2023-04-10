@@ -21,6 +21,10 @@ export const postLogin = async (req, res) => {
       errorMessage: "비밀번호가 일치하지 않습니다.",
     });
   }
+
+  req.session.loggedIn = true;
+  req.session.user = user;
+
   return res.redirect("/");
 };
 
@@ -32,6 +36,12 @@ export const postJoin = async (req, res) => {
   const {
     body: { username, password, password2, name, birth, email, location },
   } = req;
+  if (password !== password2) {
+    return res.status(400).render("join", {
+      pageTitle,
+      errorMessage: "비밀번호가 일치하지 않습니다.",
+    });
+  }
   const user = new User({
     username,
     password,
@@ -46,4 +56,9 @@ export const postJoin = async (req, res) => {
   await user.save();
 
   return res.redirect("/login");
+};
+
+export const logout = (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 };

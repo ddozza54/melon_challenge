@@ -5,9 +5,14 @@ block home
         div.homebar
             span 뮤직 플레이어
         div.homeContents
-            span
-                a(href="/login") 로그인
-            //-로그인하면 환영합니다 OO 님 ^^ 
+            if loggedIn
+                p 환영합니다 #{loggedInUser.name}님 ^_^ 
+                span
+                    a(href="/logout") 로그아웃
+
+            else
+                span
+                    a(href="/login") 로그인
             img(src="https://flexible.img.hani.co.kr/flexible/normal/640/360/imgdb/original/2021/0317/20210317503211.jpg")
             ul 
                 li
