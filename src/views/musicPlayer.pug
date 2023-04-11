@@ -1,26 +1,30 @@
-extends base
+extends baseNav
 
 block content
+    section.playerPage
+        div#musicPlayer(data-id=song._id)
+            div.listLikeBtns 
+                span
+                    a(href=`/music`) &larr; 전체 목록으로 돌아가기
+                span 👍
+            div.imgdiv
+                img(src='/'+song.imgpath)
 
-    div#musicPlayer(data-id=song._id)
-        div.player_btns
-            h4
-                a(href=`/music`) &larr; 목록으로 돌아가기
-            button 👍
-        img(src='/'+song.imgpath)
-        h1=song.title
-        h2=song.artist
-        audio(src='/'+song.songpath autoplay) 
-        div
-            div#audioControler
-                span#muteHoverIcon
-                    i.fas.fa-volume-down.fa-lg
-                        div#muteBox
-                            button#muteBtn
-                              i.fas.fa-volume-up.fa-lg#muteBtnIcon
-                            input(type="range", step="0.1",value=0.5, min="0", max="1")#volume
-                    
-                div
+            div.playerControler
+                h1=song.title
+                h2=song.artist
+                div.muteAnsLyrics
+                    span#muteHoverIcon
+                        i.fas.fa-volume-down.fa-lg
+                            div#muteBox
+                                button#muteBtn
+                                    i.fas.fa-volume-up.fa-lg#muteBtnIcon
+                                input(type="range", step="0.1",value=0.5, min="0", max="1")#volume
+                    span#lyricsIcon
+                        i.far.fa-file-alt
+
+
+                div.audioControlerBtns
                     button#suffle
                         i.fas.fa-random
                     button#prevSong
@@ -32,18 +36,17 @@ block content
                     button#repeat
                         i.fas.fa-retweet 
 
-                div
-                    input(type="range", step="1", value="0", min="0")#timeline
-
-                div
+            
+                input(type="range", step="1", value="0", min="0")#timeline
+                div.playerTime
                     span#currentTime 00:00
                     span#totalTime 00:00
+                audio(src='/'+song.songpath autoplay) 
+        div.playerPage_right 
+            h2 영상 player?
+            h2 현재 playlist
+            h2 가사
 
-
-
-
-block navBlock 
-    include partials/nav
 
 
 block scripts

@@ -1,70 +1,138 @@
-#musicPlayer {
+.playerPage {
   grid-column: 2/3;
   grid-row: 1/-1;
-  width: 95%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: overlay;
-  margin-left: $sideM;
-  font-size: 20px;
-  border-radius: 0 0 $br $br;
-  div.player_btns {
-    width: 95%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    h4,
-    button {
-      background-color: darkseagreen;
-      padding: 5px;
-      border: 2px solid black;
-      border-radius: 20px;
-    }
-  }
-  img {
-    margin: 20px 0;
-    width: 90%;
-    border: 4mm ridge rgb(246, 56, 205);
-  }
+  display: grid;
+  grid-template-columns: 5fr 4fr;
 
-  h1 {
-    font-size: 30px;
-    font-weight: bolder;
-    margin-bottom: 5px;
-  }
-  h2 {
-    color: rgb(71, 71, 71);
-  }
-  audio {
-    margin: 15px 0;
-  }
-  #audioControler {
-    width: 100%;
+  #musicPlayer {
+    grid-column: 1/1;
+    width: 95%;
     height: 100%;
-    margin: 15px;
+    max-height: 600px;
+    padding: 10px;
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr 1fr;
-    div {
-      width: 100%;
+    grid-template-rows: 1fr 3fr 4fr;
+    .listLikeBtns {
+      grid-row: 1/2;
       display: flex;
       justify-content: space-between;
-    }
-    button:not(#muteBtn) {
-      width: 50px;
-      height: 50px;
-      margin: 0 10px;
-      background-color: transparent;
-      border: none;
-      font-size: 28px;
-      &:hover {
-        color: chartreuse;
-        scale: 1.1;
+      align-items: center;
+      span {
+        background-color: darkseagreen;
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 10px;
+        &:hover {
+          background-color: orange;
+          cursor: pointer;
+        }
       }
     }
-    input {
-      margin: 10px;
+    .imgdiv {
+      grid-row: 2/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0;
+      img {
+        border: 4mm ridge rgb(246, 56, 205);
+      }
     }
+
+    .playerControler {
+      grid-row: 3/4;
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      h1 {
+        font-size: 30px;
+        font-weight: bolder;
+        margin-bottom: 5px;
+      }
+      h2 {
+        color: rgb(71, 71, 71);
+      }
+    }
+    .muteAnsLyrics {
+      width: 95%;
+      display: flex;
+      justify-content: space-between;
+      span {
+        padding: 15px;
+        font-size: 20px;
+        border-radius: 50%;
+        border: 2px solid blue;
+        background-color: yellow;
+        &:hover {
+          color: salmon;
+          cursor: pointer;
+        }
+      }
+      #muteHoverIcon {
+        position: relative;
+
+        #muteBox {
+          width: 200px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          background-color: rgba(whitesmoke, 0.5);
+          border-radius: 20px;
+          padding: 15px;
+          position: absolute;
+          top: -10px;
+          left: 14px;
+          display: none;
+          align-self: center;
+        }
+        #volume {
+          width: 65%;
+        }
+        button {
+          width: 50px;
+          height: 30px;
+          border: none;
+          background-color: aquamarine;
+          font-size: 15px;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+        &:hover {
+          #muteBox {
+            display: block;
+          }
+        }
+      }
+    }
+    .audioControlerBtns {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      button {
+        width: 60px;
+        height: 50px;
+        margin: 0 5px;
+        text-align: center;
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        &:hover {
+          color: chartreuse;
+          scale: 1.1;
+          cursor: pointer;
+        }
+      }
+    }
+    #play {
+      i {
+        font-size: 50px;
+      }
+    }
+
     input[type="range"] {
       -webkit-appearance: none;
       width: 100%;
@@ -88,49 +156,25 @@
     }
 
     input[type="range"]::-webkit-slider-runnable-track {
-      width: 100%;
+      width: 80%;
       height: 100%;
       cursor: pointer;
       border-radius: 5px;
       background-color: slateblue;
     }
-    #muteBox {
-      width: 200px;
-      height: 30px;
-      background-color: rgba(black, 0.5);
-      border-radius: 20px;
-      padding: 15px;
-      position: absolute;
-      top: -10px;
-      left: 30px;
-      display: none;
-      align-self: center;
-    }
-    #volume {
-      width: 65%;
-    }
 
-    #muteHoverIcon {
-      position: relative;
-      font-size: 20px;
-      &:hover {
-        #muteBox {
-          display: block;
-        }
-      }
+    .playerTime {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+  }
 
-    :first-child {
-      grid-row: 1/2;
-    }
-    :nth-child(2) {
-      grid-row: 2/3;
-    }
-    :nth-child(3) {
-      grid-row: 3/4;
-    }
-    :last-child {
-      grid-row: 4/5;
-    }
+  .playerPage_right {
+    grid-column: 2/3;
+    width: 100%;
+    height: 100%;
+    border-left: 1px black solid;
   }
 }
