@@ -54,7 +54,9 @@ body {
     height: 100%;
     max-height: 620px;
     display: grid;
+    grid-template-columns: 1fr 9fr;
     grid-template-rows: 9fr 1fr;
+    font-size: 20px;
   }
 }
 
@@ -62,17 +64,17 @@ img {
   aspect-ratio: auto 16/10;
 }
 
-.block::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
 }
-.block::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   height: 20%; /* 스크롤바의 길이 */
   background: gray; /* 스크롤바의 색상 */
 
   border-radius: 10px;
 }
 
-.block::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
 }
 
