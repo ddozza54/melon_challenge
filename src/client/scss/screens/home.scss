@@ -1,6 +1,7 @@
 .home {
   width: 100%;
   height: 100%;
+  grid-row: -1/1;
   display: grid;
   grid-template-columns: 1fr 9fr;
   font-size: 20px;
@@ -17,7 +18,6 @@
     background-color: aquamarine;
     border-radius: 0 0 0 $br;
     span {
-      margin-top: $headerH;
       margin-left: 1%;
     }
   }

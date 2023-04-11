@@ -1,7 +1,9 @@
-#songList {
-  height: 400px;
-  width: 90%;
+.songList {
+  grid-row: 1/2;
+  width: 98%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
+  overflow: overlay;
+  margin-left: $sideM;
 }
