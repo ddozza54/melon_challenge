@@ -1,6 +1,7 @@
 import { async } from "regenerator-runtime";
 import Song from "../models/Song";
 import User from "../models/User";
+import session from "express-session";
 const siteName = "HanSaRang Music";
 
 export const home = async (req, res) => {
@@ -54,10 +55,20 @@ export const play = async (req, res) => {
 };
 
 export const playlist = async (req, res) => {
-  return res.render("playlist", {
-    pageTitle: "Custom playlist",
-    siteName,
-  });
+  if (!req.session.loggedIn) {
+    return res.render("playlist", {
+      pageTitle: "Playlist",
+      errorMessage: "로그인하고 곡 정보를 받아보세요",
+    });
+  } else {
+    const userId = req.session._id;
+    // const playlist = await User.findById(userId, { playlist });
+    // console.log(playlist);
+    return res.render("playlist", {
+      pageTitle: "Custom playlist",
+      siteName,
+    });
+  }
 };
 
 export const registerView = async (req, res) => {
@@ -70,4 +81,22 @@ export const registerView = async (req, res) => {
   song.views += 1;
   await song.save();
   return res.sendStatus(200);
+};
+
+// export const registerPlaylist = async (req, res) => {
+//   const { id } = musicPlayer.dataset;
+//   const {
+//     session: { _id },
+//   } = req;
+
+//   await User.findByIdAndUpdate(_id, {
+//     playlist: [...playlist, { id }],
+//   });
+
+//   console.log("hey");
+//   return res.sendStatus(200);
+// };
+
+export const editSong = (req, res) => {
+  return res.render("editSong", { pageTitle: "Edit Page!" });
 };

@@ -1,4 +1,12 @@
 extends baseNav
+include mixins/song
 
-block content 
-    h1 playlist
+block content
+    if(errorMessage)
+        p=errorMessage
+    //- p=songs
+    //- div.songList
+    //-     each song in songs
+    //-         +song(song)
+    //-     else
+    //-         li Sorry nothing found

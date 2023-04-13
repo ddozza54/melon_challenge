@@ -6,7 +6,7 @@ block content
             div.listLikeBtns 
                 span
                     a(href=`/music`) &larr; 전체 목록으로 돌아가기
-                span 👍
+                button#likeBtn 👍
             div.imgdiv
                 img(src='/'+song.imgpath)
 
@@ -44,8 +44,9 @@ block content
                 audio(src='/'+song.songpath autoplay) 
         div.playerPage_right 
             h2 영상 player?
-            h2 현재 playlist
             h2 가사
+
+
 
 
 

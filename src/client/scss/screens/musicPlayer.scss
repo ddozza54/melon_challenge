@@ -17,7 +17,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      span {
+      span,
+      #likeBtn {
         background-color: darkseagreen;
         border: 2px solid black;
         border-radius: 20px;

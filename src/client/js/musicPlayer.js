@@ -8,6 +8,8 @@ const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("volume");
 const timeline = document.getElementById("timeline");
+const likeBtn = document.getElementById("likeBtn");
+const editBtn = document.getElementById("#editBtn");
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
@@ -16,6 +18,12 @@ const handleViews = async () => {
   const { id } = musicPlayer.dataset;
   await fetch(`/api/music/${id}/view`, { method: "POST" });
 };
+
+// //플레이리스트에 등록
+// export const handlePlaylist = async (req, res) => {
+//   const userId = req.session._id;
+//   await fetch(`/api/user/${userId}/playlist`, { method: "POST" });
+// };
 
 const handlePlayClick = (e) => {
   audio.paused ? audio.play() : audio.pause();
@@ -80,3 +88,4 @@ volumeRange.addEventListener("change", handleVolumeChange);
 audio.addEventListener("loadedmetadata", handleLoadedMetadata);
 audio.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("change", handleTimeLine);
+likeBtn.addEventListener("click", handlePlaylist);

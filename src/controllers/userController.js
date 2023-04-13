@@ -1,5 +1,7 @@
 import { async } from "regenerator-runtime";
 import User from "../models/User";
+import Song from "../models/Song";
+import { playlist } from "./songController";
 const siteName = "HanSaRang Music";
 
 export const getLogin = (req, res) => {
@@ -61,4 +63,8 @@ export const postJoin = async (req, res) => {
 export const logout = (req, res) => {
   req.session.destroy();
   res.redirect("/");
+};
+
+export const community = (req, res) => {
+  return res.render("community", { pageTitle: "Community" });
 };

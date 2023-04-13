@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   location: { type: String, trim: true, required: true },
-  playlist: [{ type: String }],
+  playlist: [{ id: { type: String } }],
 });
 
 const User = mongoose.model("User", userSchema);
