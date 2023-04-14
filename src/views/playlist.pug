@@ -4,9 +4,8 @@ include mixins/song
 block content
     if(errorMessage)
         p=errorMessage
-    //- p=songs
-    //- div.songList
-    //-     each song in songs
-    //-         +song(song)
-    //-     else
-    //-         li Sorry nothing found
+    div.songList
+        each song in songs
+            +song(song)
+        else
+            li Sorry nothing found

@@ -54,23 +54,6 @@ export const play = async (req, res) => {
   return res.render("musicPlayer", { pageTitle: song.title, song });
 };
 
-export const playlist = async (req, res) => {
-  if (!req.session.loggedIn) {
-    return res.render("playlist", {
-      pageTitle: "Playlist",
-      errorMessage: "로그인하고 곡 정보를 받아보세요",
-    });
-  } else {
-    const userId = req.session._id;
-    // const playlist = await User.findById(userId, { playlist });
-    // console.log(playlist);
-    return res.render("playlist", {
-      pageTitle: "Custom playlist",
-      siteName,
-    });
-  }
-};
-
 export const registerView = async (req, res) => {
   const { id } = req.params;
   const song = await Song.findById(id);
@@ -81,6 +64,51 @@ export const registerView = async (req, res) => {
   song.views += 1;
   await song.save();
   return res.sendStatus(200);
+};
+
+export const playlist = async (req, res) => {
+  if (!req.session.loggedIn) {
+    return res.render("playlist", {
+      pageTitle: "Playlist",
+      errorMessage: "로그인하고 곡 정보를 받아보세요",
+    });
+  } else {
+    const {
+      session: {
+        user: { _id },
+      },
+    } = req;
+    const user = await User.findById(_id);
+    // 이렇게 쓰면 안됨. 오류나서 서버 끊김
+    //  const playlist = await User.findById(_id, { playlist });
+    console.log(user.playlist); //불러오기 성공
+    const playlist = user.playlist;
+    // ["642ec5b4874c8b05ef88e8ba"]
+
+    const songs = [];
+    for (let i = 0; i < playlist.length; i++) {
+      let song = await Song.findById(playlist[i]).exec();
+      songs.push(song);
+    }
+    console.log(songs);
+    // user.playlist.map(async (id) => await Song.findById(id).exec())
+
+    //-> 이제 들어있는 아이디를 Song 으로 하나하나 찾아서,
+    //->Songs 라는 obj 에 넣어줌.
+
+    //이 부분은 playlist 에 추가하는 부분
+    // const newPlaylist = [...playlist, "642ec5b4874c8b05ef88e8ba"];
+
+    // await User.findByIdAndUpdate(_id, {
+    //   playlist: newPlaylist,
+    // });
+
+    return res.render("playlist", {
+      pageTitle: "Custom playlist",
+      siteName,
+      songs,
+    });
+  }
 };
 
 // export const registerPlaylist = async (req, res) => {
