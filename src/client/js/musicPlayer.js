@@ -9,7 +9,7 @@ const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("volume");
 const timeline = document.getElementById("timeline");
 const likeBtn = document.getElementById("likeBtn");
-const editBtn = document.getElementById("#editBtn");
+const editBtn = document.getElementById("editBtn");
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
@@ -18,12 +18,6 @@ const handleViews = async () => {
   const { id } = musicPlayer.dataset;
   await fetch(`/api/music/${id}/view`, { method: "POST" });
 };
-
-// //플레이리스트에 등록
-// export const handlePlaylist = async (req, res) => {
-//   const userId = req.session._id;
-//   await fetch(`/api/user/${userId}/playlist`, { method: "POST" });
-// };
 
 const handlePlayClick = (e) => {
   audio.paused ? audio.play() : audio.pause();
@@ -79,6 +73,20 @@ const handleTimeLine = (e) => {
     target: { value },
   } = e;
   audio.currentTime = value;
+};
+
+const handlePlaylist = async () => {
+  const songId = musicPlayer.dataset.id;
+  await fetch(`/api/music/${songId}/playlist`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ songId }),
+  });
+ 
+  // 2. 리스트에 있다면 제거하기
+
 };
 
 audio.addEventListener("ended", handleViews);

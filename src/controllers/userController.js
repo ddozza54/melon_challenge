@@ -68,3 +68,22 @@ export const logout = (req, res) => {
 export const community = (req, res) => {
   return res.render("community", { pageTitle: "Community" });
 };
+
+export const addPlaylist = async (req, res) => {
+  console.log(req.params);
+  //   { id: '642ec5b4874c8b05ef88e8ba' }
+  console.log(req.body);
+  // { songId: '642ec5b4874c8b05ef88e8ba' }
+  const {
+    session: { user: _id },
+  } = req;
+  const { songId } = req.body;
+  const user = await User.findById(_id);
+  const newPlaylist = [...user.playlist, songId];
+
+  await User.findByIdAndUpdate(_id, {
+    playlist: newPlaylist,
+  });
+
+  return res.end();
+};

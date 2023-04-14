@@ -96,12 +96,6 @@ export const playlist = async (req, res) => {
     //-> 이제 들어있는 아이디를 Song 으로 하나하나 찾아서,
     //->Songs 라는 obj 에 넣어줌.
 
-    //이 부분은 playlist 에 추가하는 부분
-    // const newPlaylist = [...playlist, "642ec5b4874c8b05ef88e8ba"];
-
-    // await User.findByIdAndUpdate(_id, {
-    //   playlist: newPlaylist,
-    // });
 
     return res.render("playlist", {
       pageTitle: "Custom playlist",

@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   location: { type: String, trim: true, required: true },
-  playlist: [{ type: String }],
+  playlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Song" }],
 });
 
 const User = mongoose.model("User", userSchema);
