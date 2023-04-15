@@ -8,11 +8,12 @@ const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("volume");
 const timeline = document.getElementById("timeline");
-const likeBtn = document.getElementById("likeBtn");
+const likeBtn = document.querySelector(".likeBtn");
 const editBtn = document.getElementById("editBtn");
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
+
 
 const handleViews = async () => {
   const { id } = musicPlayer.dataset;
@@ -76,6 +77,8 @@ const handleTimeLine = (e) => {
 };
 
 const handlePlaylist = async () => {
+let isPlaylist = false;
+  
   const songId = musicPlayer.dataset.id;
   await fetch(`/api/music/${songId}/playlist`, {
     method: "POST",
@@ -84,9 +87,8 @@ const handlePlaylist = async () => {
     },
     body: JSON.stringify({ songId }),
   });
- 
+  likeBtn.style.backgroundColor = "deeppink";
   // 2. 리스트에 있다면 제거하기
-
 };
 
 audio.addEventListener("ended", handleViews);

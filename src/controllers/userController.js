@@ -70,15 +70,12 @@ export const community = (req, res) => {
 };
 
 export const addPlaylist = async (req, res) => {
-  console.log(req.params);
-  //   { id: '642ec5b4874c8b05ef88e8ba' }
-  console.log(req.body);
-  // { songId: '642ec5b4874c8b05ef88e8ba' }
   const {
     session: { user: _id },
   } = req;
   const { songId } = req.body;
   const user = await User.findById(_id);
+  //이미 있는 노래는 추가 안되도록 해야함
   const newPlaylist = [...user.playlist, songId];
 
   await User.findByIdAndUpdate(_id, {

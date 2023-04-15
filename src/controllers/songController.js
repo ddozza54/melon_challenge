@@ -79,23 +79,17 @@ export const playlist = async (req, res) => {
       },
     } = req;
     const user = await User.findById(_id);
-    // 이렇게 쓰면 안됨. 오류나서 서버 끊김
-    //  const playlist = await User.findById(_id, { playlist });
-    console.log(user.playlist); //불러오기 성공
     const playlist = user.playlist;
-    // ["642ec5b4874c8b05ef88e8ba"]
-
     const songs = [];
     for (let i = 0; i < playlist.length; i++) {
       let song = await Song.findById(playlist[i]).exec();
       songs.push(song);
     }
-    console.log(songs);
+
     // user.playlist.map(async (id) => await Song.findById(id).exec())
 
     //-> 이제 들어있는 아이디를 Song 으로 하나하나 찾아서,
     //->Songs 라는 obj 에 넣어줌.
-
 
     return res.render("playlist", {
       pageTitle: "Custom playlist",
@@ -104,20 +98,6 @@ export const playlist = async (req, res) => {
     });
   }
 };
-
-// export const registerPlaylist = async (req, res) => {
-//   const { id } = musicPlayer.dataset;
-//   const {
-//     session: { _id },
-//   } = req;
-
-//   await User.findByIdAndUpdate(_id, {
-//     playlist: [...playlist, { id }],
-//   });
-
-//   console.log("hey");
-//   return res.sendStatus(200);
-// };
 
 export const editSong = (req, res) => {
   return res.render("editSong", { pageTitle: "Edit Page!" });
