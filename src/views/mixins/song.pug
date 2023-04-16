@@ -7,9 +7,8 @@ mixin song(song)
             h4
                 a(href=`/music/${song.id}`)=song.title
             span=song.artist 
-            span 
-                i.fas.fa-headphones #{song.views}
-        button 👍
-        span 찜한 수: #{song.like}
+        span 
+            i.fas.fa-headphones #{song.views}
+        button(id=`likeBtn_${song._id}`).likeBtn 👍
 
-        hr
+        hr  

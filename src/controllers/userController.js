@@ -82,10 +82,8 @@ export const addPlaylist = async (req, res) => {
   } else {
     newPlaylist = user.playlist;
   }
-
   await User.findByIdAndUpdate(_id, {
     playlist: newPlaylist,
   });
-  console.log("FN addplaylist");
   return res.end();
 };
