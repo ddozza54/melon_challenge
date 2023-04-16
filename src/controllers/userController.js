@@ -5,7 +5,8 @@ import { playlist } from "./songController";
 const siteName = "HanSaRang Music";
 
 export const getLogin = (req, res) => {
-  return res.render("login", { pageTitle: "로그인" });
+  const pageTitle = "로그인";
+  return res.render("login", { pageTitle });
 };
 
 export const postLogin = async (req, res) => {
@@ -13,13 +14,13 @@ export const postLogin = async (req, res) => {
   const user = await User.findOne({ username });
   if (!user) {
     return res.status(400).render("login", {
-      pageTitle: "로그인",
+      pageTitle,
       errorMessage: "일치하는 회원 정보가 없습니다.",
     });
   }
   if (password !== user.password) {
     return res.status(400).render("login", {
-      pageTitle: "로그인",
+      pageTitle,
       errorMessage: "비밀번호가 일치하지 않습니다.",
     });
   }
@@ -31,23 +32,24 @@ export const postLogin = async (req, res) => {
 };
 
 export const getJoin = (req, res) => {
-  return res.render("join", { pageTitle: "회원 가입" });
+  const pageTitle = "회원 가입";
+  return res.render("join", { pageTitle });
 };
 
 export const postJoin = async (req, res) => {
   const {
-    body: { username, password, password2, name, birth, email, location },
+    body: { username, password, password2, name, email, location },
   } = req;
   const exsist = await User.exists({ username });
   if (exsist) {
     return res.status(400).render("join", {
-      pageTitle: "회원 가입",
+      pageTitle,
       errorMessage: "이미 존재하는 아이디 입니다.",
     });
   } else {
     if (password !== password2) {
       return res.status(400).render("join", {
-        pageTitle: "회원 가입",
+        pageTitle,
         errorMessage: "비밀번호가 일치하지 않습니다.",
       });
     }
@@ -56,7 +58,6 @@ export const postJoin = async (req, res) => {
       password,
       password2,
       name,
-      birth,
       email,
       location,
       playlist: [],

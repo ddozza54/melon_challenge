@@ -1,16 +1,16 @@
 extends baseNav
 
-block content 
-    if errorMessage
-        span=errorMessage
-    h1 로그인
-    form(method="POST")
-        label(for="username") ID
-        input(name="username", type="text", id="username", placeholder="아이디를 입력하세요")
-        label(for="password") Password
-        input(name="password", type="password", id="password", placeholder="비밀번호를 입력하세요")
-        input(type="submit", value="로그인")
+block content
+    div.login
+        h1=pageTitle
+        if errorMessage
+            span.errorMessage=errorMessage
+        form(method="POST")
+            label(for="username") ID
+            input(name="username", type="text", id="username", placeholder="아이디를 입력하세요")
+            label(for="password") Password
+            input(name="password", type="password", id="password", placeholder="비밀번호를 입력하세요")
+            input(type="submit", value="로그인")
 
-    hr
-    span 회원이 아니신가요? 
-        a(href="/join") 회원가입 하러 하기 &rarr;
+        span.askingLink 회원이 아니신가요? 
+            a(href="/join") 회원가입 하러 하기 &rarr;
