@@ -1,4 +1,5 @@
-.join {
+.join,
+.login {
   grid-column: 2/3;
   grid-row: 1/-1;
   padding-left: 15px;
@@ -18,6 +19,9 @@
   .errorMessage {
     grid-row: 2/3;
     color: tomato;
+    background-color: black;
+    padding: 10px 0;
+    align-self: center;
   }
 
   form {

@@ -5,11 +5,11 @@ import { playlist } from "./songController";
 const siteName = "HanSaRang Music";
 
 export const getLogin = (req, res) => {
-  const pageTitle = "로그인";
-  return res.render("login", { pageTitle });
+  return res.render("login", { pageTitle: "로그인" });
 };
 
 export const postLogin = async (req, res) => {
+  const pageTitle = "로그인";
   const { username, password } = req.body;
   const user = await User.findOne({ username });
   if (!user) {
@@ -32,11 +32,11 @@ export const postLogin = async (req, res) => {
 };
 
 export const getJoin = (req, res) => {
-  const pageTitle = "회원 가입";
-  return res.render("join", { pageTitle });
+  return res.render("join", { pageTitle: "회원 가입" });
 };
 
 export const postJoin = async (req, res) => {
+  const pageTitle = "회원 가입";
   const {
     body: { username, password, password2, name, email, location },
   } = req;
@@ -72,7 +72,7 @@ export const logout = (req, res) => {
 };
 
 export const community = (req, res) => {
-  return res.render("community", { pageTitle: "Community" });
+  return res.render("community", { pageTitle: "방명록" });
 };
 
 export const addPlaylist = async (req, res) => {
