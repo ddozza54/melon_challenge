@@ -80,16 +80,12 @@ export const playlist = async (req, res) => {
     } = req;
     const user = await User.findById(_id);
     const playlist = user.playlist;
+    console.log(playlist);
     const songs = [];
     for (let i = 0; i < playlist.length; i++) {
       let song = await Song.findById(playlist[i]).exec();
       songs.push(song);
     }
-
-    // user.playlist.map(async (id) => await Song.findById(id).exec())
-
-    //-> 이제 들어있는 아이디를 Song 으로 하나하나 찾아서,
-    //->Songs 라는 obj 에 넣어줌.
 
     return res.render("playlist", {
       pageTitle: "Custom playlist",

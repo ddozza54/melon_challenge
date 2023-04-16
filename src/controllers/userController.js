@@ -76,11 +76,16 @@ export const addPlaylist = async (req, res) => {
   const { songId } = req.body;
   const user = await User.findById(_id);
   //이미 있는 노래는 추가 안되도록 해야함
-  const newPlaylist = [...user.playlist, songId];
+  let newPlaylist = [];
+  if (!user.playlist.includes(songId)) {
+    newPlaylist = [...user.playlist, songId];
+  } else {
+    newPlaylist = user.playlist;
+  }
 
   await User.findByIdAndUpdate(_id, {
     playlist: newPlaylist,
   });
-
+  console.log("FN addplaylist");
   return res.end();
 };

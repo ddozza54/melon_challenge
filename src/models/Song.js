@@ -11,6 +11,7 @@ const songSchema = new mongoose.Schema({
   meta: {
     rating: { type: Number, default: 0, required: true },
   },
+  lyrics: { type: String },
 });
 
 const Song = mongoose.model("Song", songSchema);
