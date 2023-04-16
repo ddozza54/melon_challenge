@@ -10,7 +10,8 @@ block content
                 a(href="/logout") 로그아웃
 
         else
-            p 
+            if(errorMessage)
+                p=errorMessage 
             span
                 a(href="/login") 로그인
         div.imgBox

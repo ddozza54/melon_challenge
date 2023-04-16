@@ -2,10 +2,15 @@ extends baseNav
 include mixins/song
 
 block content
-    if(errorMessage)
-        p=errorMessage
-    div.songList
-        each song in songs
-            +song(song)
+    div.playlist
+        h1=pageTitle
+        if !loggedIn
+            p.errorMessage 플레이리스트는 로그인 후 이용 가능합니다.
+            img(id="playlist_unloggedIn_img" src="https://img.smlounge.co.kr/upload/arena/article/202104/thumb/47791-449775-sampleM.jpg")
+            a(href="/login") 로그인 하러 가기 &rarr;
         else
-            p 플레이리스트가 없습니다. 👍를 눌러서 노래를 추가해보세요.
+            div.songList
+                each song in songs
+                    +song(song)
+                else
+                    p.errorMessage 플레이리스트가 없습니다. 👍를 눌러서 노래를 추가해보세요.

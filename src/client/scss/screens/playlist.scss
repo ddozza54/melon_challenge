@@ -1,4 +1,4 @@
-.musicHome {
+.playlist {
   grid-column: 2/3;
   grid-row: 1/-1;
   padding: 10px 15px;
@@ -33,6 +33,11 @@
     background-color: black;
     padding: 10px 0;
     align-self: center;
-    margin: 10px 0;
+    margin: 5px 0;
+  }
+
+  #playlist_unloggedIn_img {
+    width: 60%;
+    margin: 5px;
   }
 }

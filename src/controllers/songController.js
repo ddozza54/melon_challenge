@@ -10,7 +10,7 @@ export const home = async (req, res) => {
 
 export const musicHome = async (req, res) => {
   const songs = await Song.find({}).sort({ views: "desc" });
-  return res.render("musicHome", { pageTitle: "musicHome", songs, siteName });
+  return res.render("musicHome", { pageTitle: "모든 노래", songs, siteName });
 };
 
 export const getMusicUpload = async (req, res) => {
@@ -67,10 +67,10 @@ export const registerView = async (req, res) => {
 };
 
 export const playlist = async (req, res) => {
+  const pageTitle = "찜한 노래 목록";
   if (!req.session.loggedIn) {
     return res.render("playlist", {
-      pageTitle: "Playlist",
-      errorMessage: "로그인하고 곡 정보를 받아보세요",
+      pageTitle,
     });
   } else {
     const {
@@ -88,7 +88,7 @@ export const playlist = async (req, res) => {
     }
 
     return res.render("playlist", {
-      pageTitle: "Custom playlist",
+      pageTitle,
       siteName,
       songs,
     });

@@ -76,20 +76,30 @@ export const community = (req, res) => {
 };
 
 export const addPlaylist = async (req, res) => {
+  const pageTitle = "플레이리스트";
   const {
     session: { user: _id },
   } = req;
   const { songId } = req.body;
-  const user = await User.findById(_id);
-  //이미 있는 노래는 추가 안되도록 해야함
   let newPlaylist = [];
-  if (!user.playlist.includes(songId)) {
-    newPlaylist = [...user.playlist, songId];
+  if (req.session.loggedIn) {
+    const user = await User.findById(_id);
+    if (!user.playlist.includes(songId)) {
+      newPlaylist = [...user.playlist, songId];
+      console.log("add!!", newPlaylist);
+    } else {
+      //이미 있는 노래는 제거
+      newPlaylist = user.playlist.filter((v) => v._id !== songId);
+      console.log("remove!!", newPlaylist);
+    }
+    await User.findByIdAndUpdate(_id, {
+      playlist: newPlaylist,
+    });
+    return res.end();
   } else {
-    newPlaylist = user.playlist;
+    return res.status(400).render("home", {
+      pageTitle,
+      errorMessage: "노래 찜하기는 로그인 후 이용해주십시오.",
+    });
   }
-  await User.findByIdAndUpdate(_id, {
-    playlist: newPlaylist,
-  });
-  return res.end();
 };
