@@ -38,26 +38,31 @@ export const postJoin = async (req, res) => {
   const {
     body: { username, password, password2, name, birth, email, location },
   } = req;
-  if (password !== password2) {
+  const exsist = await User.exists({ username });
+  if (exsist) {
     return res.status(400).render("join", {
-      pageTitle,
-      errorMessage: "비밀번호가 일치하지 않습니다.",
+      pageTitle: "회원 가입",
+      errorMessage: "이미 존재하는 아이디 입니다.",
     });
+  } else {
+    if (password !== password2) {
+      return res.status(400).render("join", {
+        pageTitle: "회원 가입",
+        errorMessage: "비밀번호가 일치하지 않습니다.",
+      });
+    }
+    await User.create({
+      username,
+      password,
+      password2,
+      name,
+      birth,
+      email,
+      location,
+      playlist: [],
+    });
+    return res.redirect("/login");
   }
-  const user = new User({
-    username,
-    password,
-    password2,
-    name,
-    birth,
-    email,
-    location,
-    playlist: [],
-  });
-
-  await user.save();
-
-  return res.redirect("/login");
 };
 
 export const logout = (req, res) => {
