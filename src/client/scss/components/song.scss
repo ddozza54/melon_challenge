@@ -1,39 +1,51 @@
 .song {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 98%;
-  margin: 10px 0;
-
-  &:hover {
-    cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr 3fr 8fr 1.5fr 1.5fr 2fr;
+  border-bottom: 2px dashed blue;
+  padding: 15px 0;
+  .editBtn {
+    grid-column: 1/2;
   }
-
   img {
+    grid-column: 2/3;
     width: 120px;
     height: auto;
-    margin-right: 10px;
   }
   .song_title {
-    width: 60%;
+    grid-column: 3/4;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    h4 {
-      font-size: 20px;
-      font-weight: bolder;
+    &:hover {
+      cursor: pointer;
     }
-    span {
-      margin: 0 15px;
-      font-size: 18px;
-      i {
-        margin-right: 10px;
+
+    h4 {
+      font-size: 23px;
+      font-weight: bolder;
+      &:hover {
+        text-decoration: yellow wavy underline;
       }
     }
+    span {
+      font-size: 18px;
+    }
+  }
+  .youtubeIcon {
+    grid-column: -3/-4;
+    font-size: 30px;
+    color: rgb(249, 0, 0);
+  }
+  .songView {
+    grid-column: -2/-3;
   }
   button {
-    padding: 5px;
+    grid-column: -1/-2;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background-color: purple;
+    background-color: greenyellow;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

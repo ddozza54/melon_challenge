@@ -1,14 +1,14 @@
 mixin song(song)
     div.song
-        span 
+        span.editBtn
             a(href="") Edit
         img(src='/'+song.imgpath)
         div.song_title
             h4
                 a(href=`/music/${song.id}`)=song.title
             span=song.artist 
-        span 
-            i.fas.fa-headphones #{song.views}
+        span.youtubeIcon
+            i.fab.fa-youtube
+        span.songView 
+            i.fas.fa-headphones  #{song.views}
         button(id=`likeBtn_${song._id}`).likeBtn 👍
-
-        hr  
