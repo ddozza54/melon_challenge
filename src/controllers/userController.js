@@ -27,6 +27,7 @@ export const postLogin = async (req, res) => {
 
   req.session.loggedIn = true;
   req.session.user = user;
+  req.session.playlist = user.playlist;
 
   return res.redirect("/");
 };
@@ -89,7 +90,7 @@ export const addPlaylist = async (req, res) => {
       console.log("add!!", newPlaylist);
     } else {
       //이미 있는 노래는 제거
-      newPlaylist = user.playlist.filter((v) => v._id !== songId);
+      newPlaylist = user.playlist.filter((v) => v._id != songId);
       console.log("remove!!", newPlaylist);
     }
     await User.findByIdAndUpdate(_id, {

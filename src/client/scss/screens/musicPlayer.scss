@@ -1,4 +1,4 @@
-.playerPage {
+#playerPage {
   grid-column: 2/3;
   grid-row: 1/-1;
   display: grid;
@@ -28,8 +28,15 @@
           cursor: pointer;
         }
       }
+      .inPlaylist {
+        background-color: deeppink;
+        &:hover {
+          background-color: orange;
+          cursor: pointer;
+        }
+      }
     }
-    
+
     .imgdiv {
       grid-row: 2/3;
       display: flex;

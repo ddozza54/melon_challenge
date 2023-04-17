@@ -76,7 +76,9 @@ const handleTimeLine = (e) => {
 };
 
 const handlePlaylist = async () => {
+  let isPlaylist = false;
   const songId = musicPlayer.dataset.id;
+  // const playlist = musicPlayer.dataset.playlist;
   await fetch(`/api/music/${songId}/playlist`, {
     method: "POST",
     headers: {
@@ -84,13 +86,15 @@ const handlePlaylist = async () => {
     },
     body: JSON.stringify({ songId }),
   });
-  likeBtn.innerText === "👍"
-    ? (likeBtn.innerText = "✔️")
-    : (likeBtn.innerText = "👍");
-  likeBtn.style.backgroundColor === "deeppink"
-    ? (likeBtn.style.backgroundColor = "darkseagreen")
-    : (likeBtn.style.backgroundColor = "deeppink");
-  // 2. 리스트에 있다면 제거하기
+  if (likeBtn.innerText === "👍") {
+    isPlaylist = false;
+    likeBtn.innerText = "✔️";
+    likeBtn.classList.add("inPlaylist");
+  } else {
+    isPlaylist = true;
+    likeBtn.innerText = "👍";
+    likeBtn.classList.remove("inPlaylist");
+  }
 };
 
 audio.addEventListener("ended", handleViews);
