@@ -5,9 +5,7 @@ mixin song(song)
             h4
                 a(href=`/music/${song.id}`)=song.title
             span=song.artist
-        span.editBtn
-            if(isMaster)
-                a(href="") Edit 
+            p=song.description
         span.youtubeIcon
             i.fab.fa-youtube
         span.songView 

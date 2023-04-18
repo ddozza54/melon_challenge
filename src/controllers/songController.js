@@ -50,8 +50,8 @@ export const play = async (req, res) => {
   if (!song) {
     return res.status(404).render("404", { pageTitle: "Song is not Found." });
   }
-  req.session.nowPlaying = id;
-  res.locals.nowPlaying = id;
+  req.session.nowPlayingSong = song;
+  res.locals.nowPlayingSong = song;
   return res.render("musicPlayer", { pageTitle: song.title, song });
 };
 
@@ -94,7 +94,27 @@ export const playlist = async (req, res) => {
   }
 };
 
-export const getEditSong = (req, res) => {
-  return res.render("editSong", { pageTitle: "Edit Page!" });
+export const getEditSong = async (req, res) => {
+  const { id } = req.params;
+  const song = await Song.findById(id);
+  if (!song) {
+    return res.status(404).render("404", { pageTitle: "Edit" });
+  }
+  return res.render("editSong", { pageTitle: "Edit" });
 };
-export const postEditSong = (req, res) => {};
+export const postEditSong = async (req, res) => {
+  const { id } = req.params;
+  const { title, artist, description, lyrics } = req.body;
+  const song = await Song.exists({ _id: id });
+  if (!song) {
+    return res.render("404", { pageTitle: "Song is not Found." });
+  }
+  await Song.findByIdAndUpdate(id, {
+    title,
+    artist,
+    description,
+    lyrics,
+  });
+  
+  return res.redirect(`/music/${id}`);
+};

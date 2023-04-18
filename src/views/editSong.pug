@@ -1,4 +1,11 @@
-extends baseNav 
+extends baseNav
 
-    block content
-        h1 Hello
+block content
+    div.edit
+        h4=pageTitle
+        form(method ="POST")
+            input(name="title", placeholder="Title", required, type="text", value=nowPlayingSong.title)
+            input(name="artist", placeholder="Artist", required, type="text", value=nowPlayingSong.artist)
+            input(name="description", placeholder="Description", type="text", value=nowPlayingSong.description)
+            input(name="lyrics", placeholder="Lyrics", required, type="textarea", value=nowPlayingSong.lyrics)
+            input(type="submit", value="Edit Music")

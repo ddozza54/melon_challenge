@@ -38,17 +38,23 @@ block content
                     button#nextSong
                         i.fas.fa-angle-double-right.lg
                     button#repeat(title="반복듣기", loop=false)
-                        i.fas.fa-retweet 
-
-            
+                        span 1
+                            i.fas.fa-undo-alt
+                        //- i.fas.fa-retweet 
                 input(type="range", step="1", value="0", min="0")#timeline
                 div.playerTime
                     span#currentTime 00:00
                     span#totalTime 00:00
                 audio(src='/'+song.songpath autoplay) 
+
+
+
         div.playerPage_right 
-            h2 영상 player?
-            h2 가사
+            span.editBtn
+                if(isMaster)
+                    a(href=`/music/${song._id}/edit`) Edit Song 
+            div#lyricsBox
+                p=song.lyrics
 
 
 
