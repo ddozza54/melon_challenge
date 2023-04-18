@@ -80,13 +80,11 @@ export const playlist = async (req, res) => {
     } = req;
     const user = await User.findById(_id);
     const playlist = user.playlist;
-    console.log(playlist);
     const songs = [];
     for (let i = 0; i < playlist.length; i++) {
       let song = await Song.findById(playlist[i]).exec();
       songs.push(song);
     }
-
     return res.render("playlist", {
       pageTitle,
       siteName,

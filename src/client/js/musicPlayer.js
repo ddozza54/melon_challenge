@@ -1,4 +1,5 @@
 const audio = document.querySelector("audio");
+const playerPage = document.getElementById("playerPage");
 const musicPlayer = document.getElementById("musicPlayer");
 const playBtn = document.getElementById("play");
 const playBtnIcon = document.getElementById("playBtnIcon");
@@ -76,9 +77,7 @@ const handleTimeLine = (e) => {
 };
 
 const handlePlaylist = async () => {
-  let isPlaylist = false;
   const songId = musicPlayer.dataset.id;
-  // const playlist = musicPlayer.dataset.playlist;
   await fetch(`/api/music/${songId}/playlist`, {
     method: "POST",
     headers: {
@@ -86,14 +85,11 @@ const handlePlaylist = async () => {
     },
     body: JSON.stringify({ songId }),
   });
+
   if (likeBtn.innerText === "👍") {
-    isPlaylist = false;
     likeBtn.innerText = "✔️";
-    likeBtn.classList.add("inPlaylist");
   } else {
-    isPlaylist = true;
     likeBtn.innerText = "👍";
-    likeBtn.classList.remove("inPlaylist");
   }
 };
 

@@ -88,10 +88,13 @@ export const addPlaylist = async (req, res) => {
     if (!user.playlist.includes(songId)) {
       newPlaylist = [...user.playlist, songId];
       console.log("add!!", newPlaylist);
+      req.session.playlist = newPlaylist;
+      res.locals.playlist = newPlaylist;
     } else {
-      //이미 있는 노래는 제거
       newPlaylist = user.playlist.filter((v) => v._id != songId);
       console.log("remove!!", newPlaylist);
+      req.session.playlist = newPlaylist;
+      res.locals.playlist = newPlaylist;
     }
     await User.findByIdAndUpdate(_id, {
       playlist: newPlaylist,
