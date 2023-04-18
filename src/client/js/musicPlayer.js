@@ -88,8 +88,12 @@ const handlePlaylist = async () => {
 
   if (likeBtn.innerText === "👍") {
     likeBtn.innerText = "✔️";
+    likeBtn.classList.add("inPlaylistBtn");
+    likeBtn.classList.remove("notInPlaylistBtn");
   } else {
     likeBtn.innerText = "👍";
+    likeBtn.classList.add("notInPlaylistBtn");
+    likeBtn.classList.remove("inPlaylistBtn");
   }
 };
 

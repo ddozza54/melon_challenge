@@ -14,12 +14,15 @@ const onClickLikeBtn = async (e) => {
       body: JSON.stringify({ songId }),
     });
 
-    likeBtn.innerText === "👍"
-      ? (likeBtn.innerText = "✔️")
-      : (likeBtn.innerText = "👍");
-    likeBtn.style.backgroundColor === "deeppink"
-      ? (likeBtn.style.backgroundColor = "greenyellow")
-      : (likeBtn.style.backgroundColor = "deeppink");
+    if (likeBtn.innerText === "👍") {
+      likeBtn.innerText = "✔️";
+      likeBtn.classList.add("inPlaylistBtn");
+      likeBtn.classList.remove("notInPlaylistBtn");
+    } else {
+      likeBtn.innerText = "👍";
+      likeBtn.classList.add("notInPlaylistBtn");
+      likeBtn.classList.remove("inPlaylistBtn");
+    }
   }
 };
 

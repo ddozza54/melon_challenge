@@ -38,12 +38,23 @@
   .songView {
     grid-column: -2/-3;
   }
+  .notInPlaylistBtn,
   button {
     grid-column: -1/-2;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: greenyellow;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .inPlaylistBtn {
+    grid-column: -1/-2;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: coral;
     &:hover {
       cursor: pointer;
     }

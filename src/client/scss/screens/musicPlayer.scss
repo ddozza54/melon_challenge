@@ -18,6 +18,7 @@
       justify-content: space-between;
       align-items: center;
       span,
+      .notInPlaylistBtn,
       button {
         background-color: darkseagreen;
         border: 2px solid black;
@@ -28,13 +29,16 @@
           cursor: pointer;
         }
       }
-      // .inPlaylist {
-      //   background-color: deeppink;
-      //   &:hover {
-      //     background-color: orange;
-      //     cursor: pointer;
-      //   }
-      // }
+      .inPlaylistBtn {
+        background-color: coral;
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 10px;
+        &:hover {
+          background-color: orange;
+          cursor: pointer;
+        }
+      }
     }
 
     .imgdiv {

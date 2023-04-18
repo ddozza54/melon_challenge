@@ -11,4 +11,7 @@ mixin song(song)
             i.fab.fa-youtube
         span.songView 
             i.fas.fa-headphones  #{song.views}
-        button(id=`likeBtn_${song._id}`, title="플레이리스트에 추가하기" ).likeBtn 👍
+        - if (playlist.includes(`${song._id}`))
+            button.inPlaylistBtn(id=`likeBtn_${song._id}`,title="플레이리스트에서 제거하기") ✔️
+        - else 
+            button.notInPlaylistBtn(id=`likeBtn_${song._id}`,title="플레이리스트에 추가하기") 👍
