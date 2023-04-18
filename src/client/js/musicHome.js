@@ -3,7 +3,7 @@ import { async } from "regenerator-runtime";
 const songList = document.querySelector(".songList");
 
 const onClickLikeBtn = async (e) => {
-  if (e.target.className === "likeBtn") {
+  if (e.target.tagName === "BUTTON") {
     const likeBtn = e.target;
     const songId = likeBtn.id.replace("likeBtn_", "");
     await fetch(`/api/music/${songId}/playlist`, {
