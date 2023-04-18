@@ -6,6 +6,7 @@ export const localsMiddleware = (req, res, next) => {
   res.locals.loggedInUser = req.session.user || {};
   res.locals.isPlayingId = ""; // 요기에 넣어서 공유하자
   res.locals.playlist = req.session.playlist || [];
+  res.locals.isMaster = req.session.isMaster || false;
   next();
 };
 

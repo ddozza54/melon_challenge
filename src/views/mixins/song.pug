@@ -1,12 +1,13 @@
 mixin song(song)
     div.song
-        span.editBtn
-            a(href="") Edit
         img(src='/'+song.imgpath)
         div.song_title
             h4
                 a(href=`/music/${song.id}`)=song.title
-            span=song.artist 
+            span=song.artist
+        span.editBtn
+            if(isMaster)
+                a(href="") Edit 
         span.youtubeIcon
             i.fab.fa-youtube
         span.songView 

@@ -1,18 +1,15 @@
 .song {
   display: grid;
-  grid-template-columns: 1fr 3fr 8fr 1.5fr 1.5fr 2fr;
+  grid-template-columns: 3fr 8fr 1fr 1.5fr 1.5fr 2fr;
   border-bottom: 2px dashed blue;
   padding: 15px 0;
-  .editBtn {
-    grid-column: 1/2;
-  }
   img {
-    grid-column: 2/3;
+    grid-column: 1/2;
     width: 120px;
     height: auto;
   }
   .song_title {
-    grid-column: 3/4;
+    grid-column: 2/3;
     display: flex;
     flex-direction: column;
     &:hover {
@@ -29,6 +26,9 @@
     span {
       font-size: 18px;
     }
+  }
+  .editBtn {
+    grid-column: 3/4;
   }
   .youtubeIcon {
     grid-column: -3/-4;

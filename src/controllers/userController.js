@@ -28,6 +28,7 @@ export const postLogin = async (req, res) => {
   req.session.loggedIn = true;
   req.session.user = user;
   req.session.playlist = user.playlist;
+  req.session.isMaster = user.isMaster;
 
   return res.redirect("/");
 };

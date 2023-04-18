@@ -13,6 +13,7 @@ nav
         li 
             a(href="/music/playlist", title="찜 목록")
                 i(class="fas fa-thumbs-up")
-        li 
-            a(href="/music/upload", title="업로드")
-                i(class="fas fa-upload")
+        if(isMaster)
+            li 
+                a(href="/music/upload", title="업로드")
+                    i(class="fas fa-upload")
