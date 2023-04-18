@@ -5,7 +5,8 @@ import {
   playlist,
   getMusicUpload,
   postMusicUpload,
-  editSong,
+  getEditSong,
+  postEditSong,
 } from "../controllers/songController";
 import { uploadFiles } from "../middlewares";
 
@@ -13,7 +14,10 @@ const musicRouter = express.Router();
 
 musicRouter.get("/", musicHome);
 musicRouter.get("/:id([0-9a-f]{24})", play);
-musicRouter.get("/:id([0-9a-f]{24})/edit", editSong);
+musicRouter
+  .route("/:id([0-9a-f]{24})/edit")
+  .get(getEditSong)
+  .post(postEditSong);
 musicRouter.get("/playlist", playlist);
 musicRouter
   .route("/upload")

@@ -50,7 +50,8 @@ export const play = async (req, res) => {
   if (!song) {
     return res.status(404).render("404", { pageTitle: "Song is not Found." });
   }
-
+  req.session.nowPlaying = id;
+  res.locals.nowPlaying = id;
   return res.render("musicPlayer", { pageTitle: song.title, song });
 };
 
@@ -93,6 +94,7 @@ export const playlist = async (req, res) => {
   }
 };
 
-export const editSong = (req, res) => {
+export const getEditSong = (req, res) => {
   return res.render("editSong", { pageTitle: "Edit Page!" });
 };
+export const postEditSong = (req, res) => {};

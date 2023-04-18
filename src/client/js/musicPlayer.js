@@ -11,6 +11,7 @@ const volumeRange = document.getElementById("volume");
 const timeline = document.getElementById("timeline");
 const likeBtn = document.querySelector(".likeBtn");
 const editBtn = document.getElementById("editBtn");
+const repeatBtn = document.getElementById("repeat");
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
@@ -97,6 +98,16 @@ const handlePlaylist = async () => {
   }
 };
 
+const handleOneSongRepeat = () => {
+  if (repeatBtn.style.color === "black") {
+    audio.setAttribute("loop", true);
+    repeatBtn.style.color = "chartreuse";
+  } else {
+    audio.removeAttribute("loop");
+    repeatBtn.style.color = "black";
+  }
+};
+
 audio.addEventListener("ended", handleViews);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
@@ -105,3 +116,4 @@ audio.addEventListener("loadedmetadata", handleLoadedMetadata);
 audio.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("change", handleTimeLine);
 likeBtn.addEventListener("click", handlePlaylist);
+repeatBtn.addEventListener("click", handleOneSongRepeat);
