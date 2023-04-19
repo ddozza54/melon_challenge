@@ -8,8 +8,12 @@ nav
             a(href="/music", title="전체 노래 목록")
                 i(class="fas fa-music")
         li 
-            a(href=`/music/${nowPlaying}`, title="현재 재생 중")
-                i(class="fas fa-play")
+            if(nowPlaying)
+                a(href=`/music/${nowPlaying}`, title="현재 재생 중")
+                    i(class="fas fa-play")
+            else
+                a(href="/music/notPlaying")
+                    i(class="fas fa-play")
         li 
             a(href="/music/playlist", title="찜 목록")
                 i(class="fas fa-thumbs-up")

@@ -115,6 +115,9 @@ export const postEditSong = async (req, res) => {
     description,
     lyrics,
   });
-  
+
   return res.redirect(`/music/${id}`);
 };
+
+export const notPlaying = (req, res) =>
+  res.render("notPlaying");
