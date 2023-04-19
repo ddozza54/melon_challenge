@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     main: BASE_JS + "main.js",
     musicPlayer: BASE_JS + "musicPlayer.js",
+    miniplayer: BASE_JS + "miniplayer.js",
     musicHome: BASE_JS + "musicHome.js",
     community: BASE_JS + "community.js",
   },

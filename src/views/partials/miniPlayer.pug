@@ -1,7 +1,9 @@
 div.miniPlayer
-    h1 song.title
-    h2 song.artist
-    button.muteBtn Mute
+    i.fas.fa-guitar
+    h2=nowPlayingSong.title
+    h4=nowPlayingSong.artist
+    button.muteBtn
+        i.fas.fa-volume-mute
 
     div.audioControlerBtns
         button.prevSong
@@ -10,7 +12,6 @@ div.miniPlayer
             i#playBtnIcon.fas.fa-pause-circle.lg
         button.nextSong
             i.fas.fa-angle-double-right.lg
-    audio
-    //- audio(src='/'+song.songpath autoplay) 
+    audio(controls src='/'+nowPlayingSong.songpath autoplay) 
 
-//- script(src="/static/js/musicPlayer.js")
+script(src="/static/js/miniplayer.js")
