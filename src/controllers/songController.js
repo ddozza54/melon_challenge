@@ -120,3 +120,11 @@ export const postEditSong = async (req, res) => {
 };
 
 export const notPlaying = (req, res) => res.render("notPlaying");
+
+export const receiveCurrentTime = (req, res) => {
+  const { currentTime } = req.body;
+  console.log("received!");
+  console.log(currentTime);
+  res.locals.nowPlayingTime = currentTime;
+  req.session.nowPlayingTime = currentTime;
+};

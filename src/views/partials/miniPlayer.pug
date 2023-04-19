@@ -1,0 +1,16 @@
+div.miniPlayer
+    h1 song.title
+    h2 song.artist
+    button.muteBtn Mute
+
+    div.audioControlerBtns
+        button.prevSong
+            i.fas.fa-angle-double-left.lg
+        button.play
+            i#playBtnIcon.fas.fa-pause-circle.lg
+        button.nextSong
+            i.fas.fa-angle-double-right.lg
+    audio
+    //- audio(src='/'+song.songpath autoplay) 
+
+//- script(src="/static/js/musicPlayer.js")

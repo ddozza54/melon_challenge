@@ -1,3 +1,5 @@
+import { async } from "regenerator-runtime";
+
 const audio = document.querySelector("audio");
 const playerPage = document.getElementById("playerPage");
 const musicPlayer = document.getElementById("musicPlayer");
@@ -107,6 +109,20 @@ const handleOneSongRepeat = () => {
     repeatBtn.style.color = "black";
   }
 };
+
+const sendCurrentTime = async () => {
+  const songId = musicPlayer.dataset.id;
+  let currentTime = Math.floor(audio.currentTime);
+  await fetch(`/api/music/${songId}/nowPlaying`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ currentTime }),
+  });
+};
+
+setInterval(sendCurrentTime, 5000);
 
 audio.addEventListener("ended", handleViews);
 playBtn.addEventListener("click", handlePlayClick);

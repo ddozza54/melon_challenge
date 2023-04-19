@@ -2,6 +2,8 @@ import { async } from "regenerator-runtime";
 
 const songList = document.querySelector(".songList");
 
+console.log("IM Music HOME!");
+
 const onClickLikeBtn = async (e) => {
   if (e.target.tagName === "BUTTON") {
     const likeBtn = e.target;
