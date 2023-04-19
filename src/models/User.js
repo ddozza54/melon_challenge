@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
   location: { type: String, trim: true, required: true },
   playlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Song" }],
   isMaster: { type: Boolean, default: false },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 
 const User = mongoose.model("User", userSchema);

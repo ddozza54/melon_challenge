@@ -1,7 +1,6 @@
 import { async } from "regenerator-runtime";
 import User from "../models/User";
-import Song from "../models/Song";
-import { playlist } from "./songController";
+import Comment from "../models/Comment";
 const siteName = "HanSaRang Music";
 
 export const getLogin = (req, res) => {
@@ -73,8 +72,9 @@ export const logout = (req, res) => {
   res.redirect("/");
 };
 
-export const community = (req, res) => {
-  return res.render("community", { pageTitle: "방명록" });
+export const community = async (req, res) => {
+  const comments = await Comment.find();
+  return res.render("community", { pageTitle: "방명록", comments });
 };
 
 export const addPlaylist = async (req, res) => {
@@ -107,4 +107,18 @@ export const addPlaylist = async (req, res) => {
       errorMessage: "노래 찜하기는 로그인 후 이용해주십시오.",
     });
   }
+};
+
+export const addComment = async (req, res) => {
+  const {
+    session: { user },
+    body: { text },
+  } = req;
+
+  const comment = await Comment.create({
+    text,
+    owner: user._id,
+    ownerName: user.name,
+  });
+  return res.sendStatus(201);
 };

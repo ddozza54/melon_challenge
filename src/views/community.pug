@@ -1,4 +1,25 @@
 extends baseNav
 
 block content
-    h1 community
+    div.community
+        h1=pageTitle
+        if(loggedIn)
+            p 안녕하세요 #{loggedInUser.name}님 반갑읍니다... 
+        else
+            p 안녕하세요 반갑읍니다... 로그인을 하시면 글 작성이 가능합니다.. ^^
+
+        div#comments
+            ul
+                each comment in comments.reverse()
+                    li.comment
+                        span.comment_owner 작성자: #{comment.ownerName}
+                        span.comment_time #{comment.createdAt}
+                        span.comment_text #{comment.text}
+
+        div.commentInput
+            form(method="POST")#commentForm 
+                textarea(name="", cols="90", rows="3",required, placeholder="자유롭게 글을 써주세요.. ^^")
+                button 등록하기
+
+block scripts
+    script(src="/static/js/community.js")

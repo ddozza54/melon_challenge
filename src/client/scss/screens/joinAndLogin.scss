@@ -13,7 +13,7 @@
   }
   h1 {
     grid-row: 1/2;
-    font-size: 30px;
+    font-size: $h1FS;
     font-weight: bolder;
   }
   .errorMessage {
