@@ -8,8 +8,8 @@ nav
             a(href="/music", title="전체 노래 목록")
                 i(class="fas fa-music")
         li 
-            if(nowPlaying)
-                a(href=`/music/${nowPlaying}`, title="현재 재생 중")
+            if(nowPlayingSong)
+                a(href=`/music/${nowPlayingSong._id}`, title="현재 재생 중")
                     i(class="fas fa-play")
             else
                 a(href="/music/notPlaying", title="현재 재생 중")

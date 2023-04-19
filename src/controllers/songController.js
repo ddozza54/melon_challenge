@@ -119,5 +119,4 @@ export const postEditSong = async (req, res) => {
   return res.redirect(`/music/${id}`);
 };
 
-export const notPlaying = (req, res) =>
-  res.render("notPlaying");
+export const notPlaying = (req, res) => res.render("notPlaying");
