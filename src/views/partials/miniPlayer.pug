@@ -1,7 +1,9 @@
-div.miniPlayer
+div#miniPlayer(data-volume=currentVolume)
     i.fas.fa-guitar
     h2=nowPlayingSong.title
     h4=nowPlayingSong.artist
+    h4=currentTime
+    h4=currentVolume
     button.muteBtn
         i.fas.fa-volume-mute
 
@@ -13,5 +15,6 @@ div.miniPlayer
         button.nextSong
             i.fas.fa-angle-double-right.lg
     audio(controls src='/'+nowPlayingSong.songpath autoplay) 
+    input.miniPlayer_input(type="range" value="" step="1", min="0")        
 
 script(src="/static/js/miniplayer.js")

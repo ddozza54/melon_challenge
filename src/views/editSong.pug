@@ -7,5 +7,5 @@ block content
             input(name="title", placeholder="Title", required, type="text", value=nowPlayingSong.title)
             input(name="artist", placeholder="Artist", required, type="text", value=nowPlayingSong.artist)
             input(name="description", placeholder="Description", type="text", value=nowPlayingSong.description)
-            input(name="lyrics", placeholder="Lyrics", required, type="textarea", value=nowPlayingSong.lyrics)
+            textarea#lyrics(name="lyrics",wrap="hard",required, cols="100", rows="30",placeholder="Lyrics",value=nowPlayingSong.lyrics, resize="none") 
             input(type="submit", value="Edit Music")

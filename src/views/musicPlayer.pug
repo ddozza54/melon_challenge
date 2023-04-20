@@ -50,9 +50,11 @@ block content
 
 
         div.playerPage_right 
-            span.editBtn
-                if(isMaster)
+            if(isMaster)
+                span.editBtn
                     a(href=`/music/${song._id}/edit`) Edit Song 
+            else 
+                span 가사
             div#lyricsBox
                 p=song.lyrics
 

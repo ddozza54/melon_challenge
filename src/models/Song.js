@@ -8,9 +8,6 @@ const songSchema = new mongoose.Schema({
   description: { type: String, trim: true },
   createdAt: { type: Date, required: true, default: Date.now },
   views: { type: Number, default: 0, required: true },
-  meta: {
-    rating: { type: Number, default: 0, required: true },
-  },
   lyrics: { type: String },
 });
 

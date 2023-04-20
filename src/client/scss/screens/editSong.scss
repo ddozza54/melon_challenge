@@ -1,0 +1,38 @@
+.edit {
+  grid-column: 2/3;
+  grid-row: 1/-1;
+  padding-left: 15px;
+  padding-top: 10px;
+  width: 96%;
+  height: 96%;
+  display: flex;
+  flex-direction: column;
+
+  form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 2%;
+    input,
+    textarea {
+      height: 30px;
+      margin: 5px 0;
+      border: 2px blue solid;
+    }
+    #lyrics {
+      height: 300px;
+    }
+    input[type="submit"] {
+      background: radial-gradient(
+        circle,
+        rgba(255, 128, 219, 1) 0%,
+        rgba(70, 252, 147, 1) 100%
+      );
+      font-size: 18px;
+      font-weight: bolder;
+      height: 35px;
+      border-radius: 15px;
+    }
+  }
+}

@@ -5,7 +5,19 @@ import session from "express-session";
 const siteName = "HanSaRang Music";
 
 export const home = async (req, res) => {
-  return res.render("home", { pageTitle: "Home", siteName });
+  if (req.session.loggedIn) {
+    const {
+      session: { user: _id },
+    } = req;
+    const dbUser = await User.findById(_id);
+    const currentPlaying = dbUser.currentPlaying;
+    return res.render("home", {
+      pageTitle: "Home",
+      siteName,
+      currentTime: currentPlaying.currentTime,
+      currentVolume: currentPlaying.currentVolume,
+    });
+  } else return res.render("home", { pageTitle: "Home", siteName });
 };
 
 export const musicHome = async (req, res) => {
@@ -121,10 +133,31 @@ export const postEditSong = async (req, res) => {
 
 export const notPlaying = (req, res) => res.render("notPlaying");
 
-export const receiveCurrentTime = (req, res) => {
-  const { currentTime } = req.body;
-  console.log("received!");
-  console.log(currentTime);
-  res.locals.nowPlayingTime = currentTime;
-  req.session.nowPlayingTime = currentTime;
+export const receiveCurrentPlaying = async (req, res) => {
+  const {
+    params: { id },
+    body: { currentTime, currentVolume },
+  } = req;
+  const song = await Song.findById(id);
+
+  if (req.session.loggedIn) {
+    console.log("loggedIn received!");
+    const {
+      session: {
+        user: { _id },
+      },
+    } = req;
+
+    await User.findByIdAndUpdate(_id, {
+      currentPlaying: {
+        song,
+        currentTime,
+        currentVolume,
+      },
+    });
+    return res.sendStatus(200);
+  } else {
+    console.log("not LoggedIn received!");
+    res.locals.nowPlayingSong = song;
+  }
 };

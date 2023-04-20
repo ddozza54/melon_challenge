@@ -112,17 +112,16 @@ const handleOneSongRepeat = () => {
 
 const sendCurrentTime = async () => {
   const songId = musicPlayer.dataset.id;
-  let currentTime = Math.floor(audio.currentTime);
+  let currentTime = audio.currentTime;
+  let currentVolume = audio.volume;
   await fetch(`/api/music/${songId}/nowPlaying`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ currentTime }),
+    body: JSON.stringify({ currentTime, currentVolume }),
   });
 };
-
-setInterval(sendCurrentTime, 5000);
 
 audio.addEventListener("ended", handleViews);
 playBtn.addEventListener("click", handlePlayClick);
@@ -133,3 +132,5 @@ audio.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("change", handleTimeLine);
 likeBtn.addEventListener("click", handlePlaylist);
 repeatBtn.addEventListener("click", handleOneSongRepeat);
+
+window.addEventListener("pagehide", sendCurrentTime);
