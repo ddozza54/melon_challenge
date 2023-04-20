@@ -1,4 +1,5 @@
 extends baseNav
+include mixins/songMini
 
 block content
     section#playerPage(data-playlist=playlist)
@@ -24,8 +25,11 @@ block content
                                 button#muteBtn
                                     i.fas.fa-volume-up.fa-lg#muteBtnIcon
                                 input(type="range", step="0.1",value=0.5, min="0", max="1")#volume
-                    span#lyricsIcon
-                        i.far.fa-file-alt
+                    div.LyricsAndList
+                        span.lyricsIcon
+                            i.far.fa-file-alt
+                        span.listIcon
+                            i.fas.fa-list
 
 
                 div.audioControlerBtns
@@ -40,7 +44,6 @@ block content
                     button#repeat(title="반복듣기", loop=false)
                         span 1
                             i.fas.fa-undo-alt
-                        //- i.fas.fa-retweet 
                 input(type="range", step="1", value="0", min="0")#timeline
                 div.playerTime
                     span#currentTime 00:00
@@ -49,14 +52,20 @@ block content
 
 
 
-        div.playerPage_right 
-            if(isMaster)
-                span.editBtn
-                    a(href=`/music/${song._id}/edit`) Edit Song 
-            else 
-                span 가사
-            div#lyricsBox
-                p=song.lyrics
+        div.playerPage_right
+            section.player_lyrics.hidden
+                if(isMaster)
+                    span.editBtn
+                        a(href=`/music/${song._id}/edit`) Edit Song 
+                else 
+                    span 가사
+                div#lyricsBox
+                    p=song.lyrics
+
+            section.player_playlist.hidden
+                h1 재생 목록
+                div.playlist
+                    include partials/playlist_list_mini
 
 
 

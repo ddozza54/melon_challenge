@@ -14,6 +14,10 @@ const timeline = document.getElementById("timeline");
 const likeBtn = document.querySelector(".likeBtn");
 const editBtn = document.getElementById("editBtn");
 const repeatBtn = document.getElementById("repeat");
+const lyricsIcon = document.querySelector(".lyricsIcon");
+const listIcon = document.querySelector(".listIcon");
+const player_lyrics = document.querySelector(".player_lyrics");
+const player_playlist = document.querySelector(".player_playlist");
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
@@ -123,6 +127,16 @@ const sendCurrentTime = async () => {
   });
 };
 
+const handleLyricsClick = () => {
+  player_lyrics.classList.remove("hidden");
+  player_playlist.classList.add("hidden");
+};
+
+const handleListIconClick = () => {
+  player_playlist.classList.remove("hidden");
+  player_lyrics.classList.add("hidden");
+};
+
 audio.addEventListener("ended", handleViews);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
@@ -132,5 +146,7 @@ audio.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("change", handleTimeLine);
 likeBtn.addEventListener("click", handlePlaylist);
 repeatBtn.addEventListener("click", handleOneSongRepeat);
+lyricsIcon.addEventListener("click", handleLyricsClick);
+listIcon.addEventListener("click", handleListIconClick);
 
 window.addEventListener("pagehide", sendCurrentTime);

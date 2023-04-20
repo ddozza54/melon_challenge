@@ -64,7 +64,28 @@ export const play = async (req, res) => {
   }
   req.session.nowPlayingSong = song;
   res.locals.nowPlayingSong = song;
-  return res.render("musicPlayer", { pageTitle: song.title, song });
+
+  if (!req.session.loggedIn) {
+    return res.render("musicPlayer", { pageTitle: song.title, song });
+  } else {
+    const {
+      session: {
+        user: { _id },
+      },
+    } = req;
+    const user = await User.findById(_id);
+    const playlist = user.playlist;
+    const songs = [];
+    for (let i = 0; i < playlist.length; i++) {
+      let song = await Song.findById(playlist[i]).exec();
+      songs.push(song);
+    }
+    return res.render("musicPlayer", {
+      pageTitle: song.title,
+      song,
+      songs,
+    });
+  }
 };
 
 export const registerView = async (req, res) => {

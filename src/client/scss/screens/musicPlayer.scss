@@ -79,6 +79,7 @@
         justify-content: center;
         width: 40px;
         height: 40px;
+        margin: 0 5px;
         font-size: 20px;
         border-radius: 50%;
         border: 2px solid blue;
@@ -123,6 +124,9 @@
             display: block;
           }
         }
+      }
+      .LyricsAndList {
+        display: flex;
       }
     }
     .audioControlerBtns {
@@ -209,30 +213,80 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     border-left: 1px black solid;
-    .editBtn,
-    span {
-      border: 3px solid chartreuse;
-    }
-    #lyricsBox {
-      width: 95%;
-      height: 90%;
+    position: relative;
+    .player_lyrics {
+      width: 100%;
+      height: 100%;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      overflow: hidden;
-      border: 2px double red;
-      background-color: burlywood;
-      p {
-        font-size: 20px;
-        width: 97%;
-        height: 98%;
+      .editBtn,
+      span {
+        border: 3px solid chartreuse;
+        margin-bottom: 10px;
+      }
+      #lyricsBox {
+        width: 95%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border: 2px double red;
+        background-color: burlywood;
+        margin-bottom: 10px;
+        p {
+          font-size: 20px;
+          width: 97%;
+          height: 98%;
+          text-align: center;
+          white-space: pre-wrap;
+          word-break: keep-all;
+          overflow: overlay;
+        }
+      }
+    }
+
+    .player_playlist {
+      width: 100%;
+      overflow: overlay;
+      position: absolute;
+      h1 {
         text-align: center;
-        white-space: pre-wrap;
-        word-break: keep-all;
-        overflow: overlay;
+        font-size: 25px;
+        font-weight: bolder;
+      }
+      .song {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        margin-bottom: 8px;
+        background-color: rgba(154, 243, 213, 0.71);
+        .title {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 0 5px;
+          overflow: hidden;
+          h4 {
+            font-weight: bolder;
+          }
+          span {
+            color: grey;
+            font-size: 15px;
+          }
+        }
+        a {
+          &:hover {
+            scale: 1.2;
+            color: aqua;
+          }
+        }
       }
     }
   }
