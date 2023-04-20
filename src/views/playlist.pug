@@ -7,7 +7,8 @@ block content
         if !loggedIn
             p.errorMessage 플레이리스트는 로그인 후 이용 가능합니다.
             img(id="playlist_unloggedIn_img" src="https://img.smlounge.co.kr/upload/arena/article/202104/thumb/47791-449775-sampleM.jpg")
-            a(href="/login") 로그인 하러 가기 &rarr;
+            span
+                a(href="/login") 로그인 하러 가기 &rarr;
         else
             div.songList
                 each song in songs

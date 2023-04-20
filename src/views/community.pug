@@ -15,11 +15,11 @@ block content
                         span.comment_owner 작성자: #{comment.ownerName}
                         span.comment_time #{comment.createdAt}
                         span.comment_text #{comment.text}
-
-        div.commentInput
-            form(method="POST")#commentForm 
-                textarea(name="", cols="90", rows="3",required, placeholder="자유롭게 글을 써주세요.. ^^")
-                button 등록하기
+        if(loggedIn)
+            div.commentInput
+                form(method="POST")#commentForm 
+                    textarea(name="", cols="90", rows="3",required, placeholder="자유롭게 글을 써주세요.. ^^")
+                    button 등록하기
 
 block scripts
     script(src="/static/js/community.js")

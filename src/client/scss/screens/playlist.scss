@@ -39,5 +39,21 @@
   #playlist_unloggedIn_img {
     width: 60%;
     margin: 5px;
+    border: 4mm ridge rgb(45, 73, 255);
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(163, 248, 132);
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 15px;
+    &:hover {
+      background-color: rgb(183, 48, 188);
+      cursor: pointer;
+    }
   }
 }
