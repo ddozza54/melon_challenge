@@ -32,9 +32,9 @@ export const postMusicUpload = async (req, res) => {
     body: { title, artist, description },
   } = req;
   const imgfileObj = req.files.imgfile;
-  const imgpath = imgfileObj.map((v) => v.path)[0];
+  const imgpath = imgfileObj.map((v) => v.location)[0];
   const songfileObj = req.files.songfile;
-  const songpath = songfileObj.map((v) => v.path)[0];
+  const songpath = songfileObj.map((v) => v.location)[0];
 
   const song = new Song({
     title,
