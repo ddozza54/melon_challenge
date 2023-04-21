@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   isMaster: { type: Boolean, default: false },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   currentPlaying: {
-    song: { type: mongoose.Schema.Types.ObjectId ,ref: "Song"},
+    song: { type: mongoose.Schema.Types.ObjectId, ref: "Song" },
     currentTime: { type: Number, default: 0 },
     currentVolume: { type: Number, default: 0.5 },
   },

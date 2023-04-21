@@ -4,5 +4,5 @@ mixin songMini(song)
         div.title
             h4=song.title
             span=song.artist
-        a(href=`/music/${song.id}`)
+        a.a_url(href=`/music/${song.id}`)
             i.fas.fa-play-circle

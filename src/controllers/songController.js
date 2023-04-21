@@ -79,6 +79,9 @@ export const play = async (req, res) => {
       let song = await Song.findById(playlist[i]).exec();
       songs.push(song);
     }
+    if (!songs.includes(song)) {
+      songs.push(song);
+    }
     return res.render("musicPlayer", {
       pageTitle: song.title,
       song,
