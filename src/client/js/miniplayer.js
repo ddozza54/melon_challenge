@@ -18,4 +18,8 @@ const handleInit = () => {
 
 timeRange.addEventListener("change", handleTimeChange);
 // audio.addEventListener("play", handlePlaying);
+
+// audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+// 오디오 로드 후 발생 이벤트. 
+
 window.addEventListener("load", handleInit);

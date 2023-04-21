@@ -18,12 +18,14 @@ const lyricsIcon = document.querySelector(".lyricsIcon");
 const listIcon = document.querySelector(".listIcon");
 const player_lyrics = document.querySelector(".player_lyrics");
 const player_playlist = document.querySelector(".player_playlist");
+const songlist_ul = document.querySelector(".songlist_ul");
+
+let playlist_client = [];
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
 
-const handleViews = async () => {
-  const { id } = musicPlayer.dataset;
+const handleViews = async (id) => {
   await fetch(`/api/music/${id}/view`, { method: "POST" });
 };
 
@@ -85,6 +87,7 @@ const handleTimeLine = (e) => {
 
 const handlePlaylist = async () => {
   const songId = musicPlayer.dataset.id;
+
   await fetch(`/api/music/${songId}/playlist`, {
     method: "POST",
     headers: {
@@ -102,7 +105,38 @@ const handlePlaylist = async () => {
     likeBtn.classList.add("notInPlaylistBtn");
     likeBtn.classList.remove("inPlaylistBtn");
   }
+  if (!playlist_client.includes(songId)) {
+    playlist_client.push(songId);
+    console.log("add", playlist_client);
+  } else {
+    playlist_client.filter((v) => v !== songId);
+    console.log("remove", playlist_client);
+  }
+  // paintPlaylist(songId);
 };
+
+// const paintPlaylist = (songId) => {
+//   const li = document.createElement("li");
+//   li.classList.add("song");
+//   const img = document.createElement("img");
+//   img.setAttribute("src", `'/'+song.imgpath`);
+//   const titleDiv = document.createElement("div");
+//   titleDiv.classList.add("title");
+//   const songTitle = document.createElement("h4");
+//   const songArtist = document.createElement("span");
+//   const playAnchor = document.createElement("a");
+//   playAnchor.setAttribute("href", `/music/${songId}`);
+//   const icon = document.createElement("i");
+//   icon.classList.add("fas");
+//   icon.classList.add("fa-play-circle");
+//   playAnchor.appendChild(icon);
+//   titleDiv.appendChild(songTitle);
+//   titleDiv.appendChild(songArtist);
+//   li.appendChild(img);
+//   li.appendChild(titleDiv);
+//   li.appendChild(playAnchor);
+//   songlist_ul.appendChild(li);
+// };
 
 const handleOneSongRepeat = () => {
   if (repeatBtn.style.color === "black") {
@@ -137,7 +171,15 @@ const handleListIconClick = () => {
   player_lyrics.classList.add("hidden");
 };
 
-audio.addEventListener("ended", handleViews);
+const audioFinished = async () => {
+  const { id } = musicPlayer.dataset;
+  handleViews(id);
+  // await fetch(`/api/music/${id}/audioFinished`, {
+  //   method: "POST",
+  // });
+};
+
+audio.addEventListener("ended", audioFinished);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("change", handleVolumeChange);

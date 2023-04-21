@@ -9,15 +9,13 @@ export const home = async (req, res) => {
     const {
       session: { user: _id },
     } = req;
-    const dbUser = await User.findById(_id);
-    const currentPlaying = dbUser.currentPlaying;
     return res.render("home", {
       pageTitle: "Home",
       siteName,
-      currentTime: currentPlaying.currentTime,
-      currentVolume: currentPlaying.currentVolume,
     });
-  } else return res.render("home", { pageTitle: "Home", siteName });
+  } else {
+    return res.render("home", { pageTitle: "Home", siteName });
+  }
 };
 
 export const musicHome = async (req, res) => {
@@ -76,6 +74,7 @@ export const play = async (req, res) => {
     const user = await User.findById(_id);
     const playlist = user.playlist;
     const songs = [];
+
     for (let i = 0; i < playlist.length; i++) {
       let song = await Song.findById(playlist[i]).exec();
       songs.push(song);
@@ -135,6 +134,7 @@ export const getEditSong = async (req, res) => {
   }
   return res.render("editSong", { pageTitle: "Edit" });
 };
+
 export const postEditSong = async (req, res) => {
   const { id } = req.params;
   const { title, artist, description, lyrics } = req.body;
@@ -181,4 +181,25 @@ export const receiveCurrentPlaying = async (req, res) => {
     console.log("not LoggedIn received!");
     res.locals.nowPlayingSong = song;
   }
+};
+
+const findNextSong = async (req, res) => {
+  let nextSong = {};
+  if (playlist.includes(id)) {
+    for (let i = 0; i < playlist.length; i++) {
+      if (playlist[i] == id) {
+        let nextIndex =
+          i + 1 >= playlist.length ? i + 1 - playlist.length : i + 1;
+        let nSong = await Song.findById(playlist[nextIndex]).exec();
+        nextSong = nSong;
+      }
+    }
+    console.log("if hello");
+  } else {
+    nextSong = await Song.findById(playlist[0]);
+    console.log("else hello");
+  }
+  console.log("hello");
+  // return res.status(203).redirect("/");
+  // redirect 아무 응답 없음.
 };

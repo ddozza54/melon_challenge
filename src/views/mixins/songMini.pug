@@ -1,7 +1,6 @@
 mixin songMini(song)
     div.song
-        span
-            i.fas.fa-music
+        img(src='/'+song.imgpath)
         div.title
             h4=song.title
             span=song.artist
