@@ -13,7 +13,7 @@ block content
                 - else 
                     button.likeBtn(title="플레이리스트에 추가하기") 👍
             div.imgdiv
-                img(src='/'+song.imgpath)
+                img(src=song.imgpath)
 
             div.playerControler
                 h1=song.title
@@ -48,7 +48,7 @@ block content
                 div.playerTime
                     span#currentTime 00:00
                     span#totalTime 00:00
-                audio(src='/'+song.songpath autoplay) 
+                audio(src=song.songpath autoplay) 
 
 
 
