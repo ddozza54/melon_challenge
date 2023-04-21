@@ -8,7 +8,6 @@ const bgUrl = [
   "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzSyKV%2FbtsaTemDtCj%2FT83YZ2WfZHfiyNAPwMXNYK%2Fimg.png",
   "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FP7KUh%2Fbtsar5k3t0h%2FPWKlJ1qYzoDDMAJdWSWUJK%2Fimg.png",
   "https://tour.yd21.go.kr/_prog/download/index.php?func_gbn_cd=tourist&site_dvs_cd=tour&atch=atch_img&mng_no=28",
-  "https://postfiles.pstatic.net/MjAyMTA1MTdfMTEz/MDAxNjIxMjI2NTgzMjUy.RTKtV9qDkoo0ErMUqRIC6M-7tqILj0xWfF2y5DXVvpog.MzbmrpSArsadXa5cZ1g6trAdsiCUbnQU1bWsy5qbuSUg.JPEG.kyeongmin1362/SE-43450158-AE9F-41FA-9CFE-77B8F754BE6B.jpg?type=w966",
 ];
 
 function chanegeBgImg() {
