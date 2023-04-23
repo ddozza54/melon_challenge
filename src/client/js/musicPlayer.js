@@ -200,12 +200,13 @@ const audioFinished = async () => {
 };
 
 const handlePrevBtnClick = (e) => {
+  console.log(playlistForIndex);
+  console.log(playlist_client);
   let currnetIndex = 0;
-  console.log(playlistForIndex[3] == mainImg_url);
   for (let i = 0; i < playlistForIndex.length; i++) {
     if (playlistForIndex[i].slice(7) == includes(mainImg_url)) {
-      currnetIndex = i;
       let preIndex = i - 1 < 0 ? i - 1 + player_playlist.length : i - 1;
+      currnetIndex = i;
       console.log(currnetIndex);
     }
   }
