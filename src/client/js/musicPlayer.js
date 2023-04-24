@@ -1,7 +1,6 @@
 import { async } from "regenerator-runtime";
 
-const audio = document.querySelector("audio");
-const playerPage = document.getElementById("playerPage");
+const audio = document.getElementById("mainAudio");
 const musicPlayer = document.getElementById("musicPlayer");
 const playBtn = document.getElementById("play");
 const playBtnIcon = document.getElementById("playBtnIcon");
@@ -12,7 +11,6 @@ const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("volume");
 const timeline = document.getElementById("timeline");
 const likeBtn = document.querySelector(".likeBtn");
-const editBtn = document.getElementById("editBtn");
 const repeatBtn = document.getElementById("repeat");
 const lyricsIcon = document.querySelector(".lyricsIcon");
 const listIcon = document.querySelector(".listIcon");
@@ -89,6 +87,7 @@ const handleVolumeChange = (e) => {
 const handleLoadedMetadata = () => {
   totalTime.innerText = formatTime(Math.floor(audio.duration));
   timeline.max = Math.floor(audio.duration);
+  console.log(audio.duration);
 };
 
 const handleTimeUpdate = () => {

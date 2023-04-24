@@ -2,7 +2,7 @@ extends baseNav
 include mixins/songMini
 
 block content
-    section#playerPage(data-playlist=playlist)
+    section#playerPage
         div#musicPlayer(data-id=song._id)
             div.listLikeBtns 
                 span
@@ -48,7 +48,7 @@ block content
                 div.playerTime
                     span#currentTime 00:00
                     span#totalTime 00:00
-                audio(src=song.songpath autoplay) 
+                audio#mainAudio(src=song.songpath autoplay) 
 
 
 
