@@ -155,6 +155,7 @@
 <img src="https://i.imgur.com/aor82HE.jpg"/>
 
 볼륨 조절 range 와 mini playlist
+
 <img src="https://i.imgur.com/w8NgU5s.png"/>
 
 찜한 곡 플레이리스트
