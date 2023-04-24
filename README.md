@@ -154,7 +154,8 @@
 뮤직 플레이어
 <img src="https://i.imgur.com/aor82HE.jpg"/>
 
-찜한 곡 == 플레이리스트
+찜한 곡 플레이리스트
+
 <img src="https://i.imgur.com/ELaMTEH.png"/>
 
 곡 수정 & 업로드 nav
@@ -182,4 +183,4 @@
 
 - 클라우드 타입을 이용한 배포
 
-- mongoDB 와 AWS S3 을 이요한 데이터 관리
+- mongoDB 와 AWS S3 을 이한 데이터 관리
