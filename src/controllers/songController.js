@@ -81,7 +81,7 @@ export const play = async (req, res) => {
     }
 
     if (!playlist.includes(song._id)) {
-      songs.push(song);
+      songs.unshift(song);
     }
     return res.render("musicPlayer", {
       pageTitle: song.title,
