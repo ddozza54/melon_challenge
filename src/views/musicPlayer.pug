@@ -53,7 +53,7 @@ block content
 
 
         div.playerPage_right
-            section.player_lyrics
+            section.player_lyrics.hidden
                 if(isMaster)
                     span.editBtn
                         a(href=`/music/${song._id}/edit`) Edit Song 
@@ -62,8 +62,8 @@ block content
                 div#lyricsBox
                     p=song.lyrics
 
-            section.player_playlist.hidden
-                h1 재생 목록
+            section.player_playlist
+                h1 현재 재생 목록
                 div.playlist
                     include partials/playlist_list_mini
 

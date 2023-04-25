@@ -18,14 +18,13 @@ const player_lyrics = document.querySelector(".player_lyrics");
 const player_playlist = document.querySelector(".player_playlist");
 const btn_prev = document.getElementById("prevSong");
 const btn_next = document.getElementById("nextSong");
-// const songList = document.querySelector(".songList");
-// const songList_songs = songList.getElementsByClassName("song");
-
-let playlistFE = JSON.parse(musicPlayer.dataset.playlist);
-console.log("init playlistFE", playlistFE);
+const removeBtn = document.querySelector(".removeBtn_playlist");
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
+
+let playlistFE = JSON.parse(musicPlayer.dataset.playlist);
+console.log("init playlistFE", playlistFE);
 
 const handleViews = async (id) => {
   await fetch(`/api/music/${id}/view`, { method: "POST" });
@@ -87,6 +86,29 @@ const handleTimeLine = (e) => {
   audio.currentTime = value;
 };
 
+const paintPlaylist = (songId) => {
+  const li = document.createElement("li");
+  li.classList.add("song");
+  const img = document.createElement("img");
+  img.setAttribute("src", `'/'+song.imgpath`);
+  const titleDiv = document.createElement("div");
+  titleDiv.classList.add("title");
+  const songTitle = document.createElement("h4");
+  const songArtist = document.createElement("span");
+  const playAnchor = document.createElement("a");
+  playAnchor.setAttribute("href", `/music/${songId}`);
+  const icon = document.createElement("i");
+  icon.classList.add("fas");
+  icon.classList.add("fa-play-circle");
+  playAnchor.appendChild(icon);
+  titleDiv.appendChild(songTitle);
+  titleDiv.appendChild(songArtist);
+  li.appendChild(img);
+  li.appendChild(titleDiv);
+  li.appendChild(playAnchor);
+  songlist_ul.appendChild(li);
+};
+
 const handlePlaylist = async () => {
   const songId = musicPlayer.dataset.id;
 
@@ -98,13 +120,6 @@ const handlePlaylist = async () => {
     body: JSON.stringify({ songId }),
   });
 
-  if (!playlistFE.includes(songId)) {
-    playlistFE.push(songId);
-  } else {
-    playlistFE = playlistFE.filter((v) => v != songId);
-  }
-  console.log("playlistFE", playlistFE);
-
   if (likeBtn.innerText === "👍") {
     likeBtn.innerText = "✔️";
     likeBtn.classList.add("inPlaylistBtn");
@@ -114,39 +129,17 @@ const handlePlaylist = async () => {
     likeBtn.classList.add("notInPlaylistBtn");
     likeBtn.classList.remove("inPlaylistBtn");
   }
-  if (!playlistForIndex.includes(songId)) {
-    playlist_client.push(songId);
-    playlistForIndex = playlist_client.map((v) => v.slice(9));
-    console.log("add", playlistForIndex);
-  } else {
-    playlist_client.filter((v) => v !== songId);
-    playlistForIndex = playlist_client.map((v) => v.slice(9));
-    console.log("remove", playlistForIndex);
-  }
-};
 
-// const paintPlaylist = (songId) => {
-//   const li = document.createElement("li");
-//   li.classList.add("song");
-//   const img = document.createElement("img");
-//   img.setAttribute("src", `'/'+song.imgpath`);
-//   const titleDiv = document.createElement("div");
-//   titleDiv.classList.add("title");
-//   const songTitle = document.createElement("h4");
-//   const songArtist = document.createElement("span");
-//   const playAnchor = document.createElement("a");
-//   playAnchor.setAttribute("href", `/music/${songId}`);
-//   const icon = document.createElement("i");
-//   icon.classList.add("fas");
-//   icon.classList.add("fa-play-circle");
-//   playAnchor.appendChild(icon);
-//   titleDiv.appendChild(songTitle);
-//   titleDiv.appendChild(songArtist);
-//   li.appendChild(img);
-//   li.appendChild(titleDiv);
-//   li.appendChild(playAnchor);
-//   songlist_ul.appendChild(li);
-// };
+  console.log(playlistFE.includes(songId));
+  if (!playlistFE.includes(songId)) {
+    playlistFE.push(songId);
+  } else {
+    playlistFE = playlistFE.filter((v) => v !== songId);
+  }
+  playlistFE.map((v) => paintPlaylist(v));
+
+  console.log("playlistFE", playlistFE);
+};
 
 const handleOneSongRepeat = () => {
   if (repeatBtn.style.color === "black") {
@@ -226,5 +219,3 @@ likeBtn.addEventListener("click", handlePlaylist);
 repeatBtn.addEventListener("click", handleOneSongRepeat);
 lyricsIcon.addEventListener("click", handleLyricsClick);
 listIcon.addEventListener("click", handleListIconClick);
-
-// window.addEventListener("pagehide", sendCurrentTime);
