@@ -3,7 +3,7 @@ include mixins/songMini
 
 block content
     section#playerPage
-        div#musicPlayer(data-id=song._id)
+        div#musicPlayer(data-id=song._id)&attributes({'data-playlist': playlist})
             div.listLikeBtns 
                 span
                     a(href=`/music`) &larr; 전체 목록으로 돌아가기
@@ -13,7 +13,7 @@ block content
                 - else 
                     button.likeBtn(title="플레이리스트에 추가하기") 👍
             div.imgdiv
-                img(src=song.imgpath)
+                img(src='/'+song.imgpath)
 
             div.playerControler
                 h1=song.title
@@ -47,8 +47,8 @@ block content
                 input(type="range", step="1", value="0", min="0")#timeline
                 div.playerTime
                     span#currentTime 00:00
-                    span#totalTime 00:00
-                audio#mainAudio(src=song.songpath autoplay) 
+                    span#totalTime 03:25
+                audio#mainAudio(src='/'+song.songpath autoplay ) 
 
 
 

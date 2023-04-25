@@ -16,33 +16,16 @@ const lyricsIcon = document.querySelector(".lyricsIcon");
 const listIcon = document.querySelector(".listIcon");
 const player_lyrics = document.querySelector(".player_lyrics");
 const player_playlist = document.querySelector(".player_playlist");
-const songlist_ul = document.querySelector(".songlist_ul");
 const btn_prev = document.getElementById("prevSong");
 const btn_next = document.getElementById("nextSong");
-const songList = document.querySelector(".songList");
-const songList_songs = songList.getElementsByClassName("song");
-const a_url = songList.getElementsByClassName("a_url");
-const imgdiv = document.querySelector(".imgdiv");
-const mainImg = imgdiv.querySelector("img");
-const mainImg_url = mainImg.getAttribute("src").slice(9).toString();
+// const songList = document.querySelector(".songList");
+// const songList_songs = songList.getElementsByClassName("song");
 
-let playlist_client = [];
-let playlistForIndex = [];
+let playlistFE = JSON.parse(musicPlayer.dataset.playlist);
+console.log("init playlistFE", playlistFE);
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
-
-const getPlaylist = () => {
-  for (let i = 0; i < songList_songs.length; i++) {
-    const url = a_url[i].getAttribute("href");
-    const src = songList_songs[i].getAttribute("src");
-    // playlist_client.push(url.toString());
-    // playlistForIndex.push(src.slice(9));
-  }
-};
-
-getPlaylist();
-console.log(playlist_client);
 
 const handleViews = async (id) => {
   await fetch(`/api/music/${id}/view`, { method: "POST" });
@@ -87,7 +70,6 @@ const handleVolumeChange = (e) => {
 const handleLoadedMetadata = () => {
   totalTime.innerText = formatTime(Math.floor(audio.duration));
   timeline.max = Math.floor(audio.duration);
-  console.log(audio.duration);
 };
 
 const handleTimeUpdate = () => {
@@ -116,6 +98,13 @@ const handlePlaylist = async () => {
     body: JSON.stringify({ songId }),
   });
 
+  if (!playlistFE.includes(songId)) {
+    playlistFE.push(songId);
+  } else {
+    playlistFE = playlistFE.filter((v) => v != songId);
+  }
+  console.log("playlistFE", playlistFE);
+
   if (likeBtn.innerText === "👍") {
     likeBtn.innerText = "✔️";
     likeBtn.classList.add("inPlaylistBtn");
@@ -125,12 +114,14 @@ const handlePlaylist = async () => {
     likeBtn.classList.add("notInPlaylistBtn");
     likeBtn.classList.remove("inPlaylistBtn");
   }
-  if (!playlist_client.includes(songId)) {
+  if (!playlistForIndex.includes(songId)) {
     playlist_client.push(songId);
-    console.log("add", playlist_client);
+    playlistForIndex = playlist_client.map((v) => v.slice(9));
+    console.log("add", playlistForIndex);
   } else {
     playlist_client.filter((v) => v !== songId);
-    console.log("remove", playlist_client);
+    playlistForIndex = playlist_client.map((v) => v.slice(9));
+    console.log("remove", playlistForIndex);
   }
 };
 
@@ -199,19 +190,28 @@ const audioFinished = async () => {
 };
 
 const handlePrevBtnClick = (e) => {
-  console.log(playlistForIndex);
-  console.log(playlist_client);
-  let currnetIndex = 0;
-  for (let i = 0; i < playlistForIndex.length; i++) {
-    if (playlistForIndex[i].slice(7) == includes(mainImg_url)) {
-      let preIndex = i - 1 < 0 ? i - 1 + player_playlist.length : i - 1;
-      currnetIndex = i;
-      console.log(currnetIndex);
-    }
-  }
+  console.log("prev");
+  const { id } = musicPlayer.dataset;
+  const currIndex = playlistFE.findIndex((v) => v == id);
+  const prevIndex =
+    currIndex - 1 < 0 ? currIndex - 1 + playlistFE.length : currIndex - 1;
+  const prevSongId = playlistFE[prevIndex];
+  console.log(prevSongId);
+  location.href = `/music/${prevSongId}`;
 };
 
-const handleNextBtnClick = (e) => {};
+const handleNextBtnClick = (e) => {
+  console.log("next");
+  const { id } = musicPlayer.dataset;
+  const currIndex = playlistFE.findIndex((v) => v == id);
+  const nextIndex =
+    currIndex + 1 > playlistFE.length
+      ? currIndex + 1 - playlistFE.length
+      : currIndex + 1;
+  const nextSongId = playlistFE[nextIndex];
+  console.log(nextSongId);
+  location.href = `/music/${nextSongId}`;
+};
 
 audio.addEventListener("ended", audioFinished);
 playBtn.addEventListener("click", handlePlayClick);
