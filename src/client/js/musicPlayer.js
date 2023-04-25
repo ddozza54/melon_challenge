@@ -198,7 +198,7 @@ const handlePrevBtnClick = (e) => {
   const currIndex = playlistFE.findIndex((v) => v == id);
   const prevIndex =
     currIndex - 1 < 0 ? currIndex - 1 + playlistFE.length : currIndex - 1;
-  if (prevIndex) {
+  if (currIndex !== undefined) {
     redirectOtherSong(prevIndex);
   }
 };
@@ -211,7 +211,7 @@ const handleNextBtnClick = (e) => {
     currIndex + 1 >= playlistFE.length
       ? currIndex + 1 - playlistFE.length
       : currIndex + 1;
-  if (nextIndex) {
+  if (nextIndex !== undefined) {
     redirectOtherSong(nextIndex);
   }
 };
