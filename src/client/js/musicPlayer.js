@@ -85,30 +85,6 @@ const handleTimeLine = (e) => {
   } = e;
   audio.currentTime = value;
 };
-
-const paintPlaylist = (songId) => {
-  const li = document.createElement("li");
-  li.classList.add("song");
-  const img = document.createElement("img");
-  img.setAttribute("src", `'/'+song.imgpath`);
-  const titleDiv = document.createElement("div");
-  titleDiv.classList.add("title");
-  const songTitle = document.createElement("h4");
-  const songArtist = document.createElement("span");
-  const playAnchor = document.createElement("a");
-  playAnchor.setAttribute("href", `/music/${songId}`);
-  const icon = document.createElement("i");
-  icon.classList.add("fas");
-  icon.classList.add("fa-play-circle");
-  playAnchor.appendChild(icon);
-  titleDiv.appendChild(songTitle);
-  titleDiv.appendChild(songArtist);
-  li.appendChild(img);
-  li.appendChild(titleDiv);
-  li.appendChild(playAnchor);
-  songlist_ul.appendChild(li);
-};
-
 const handlePlaylist = async () => {
   const songId = musicPlayer.dataset.id;
 
@@ -136,9 +112,6 @@ const handlePlaylist = async () => {
   } else {
     playlistFE = playlistFE.filter((v) => v !== songId);
   }
-  playlistFE.map((v) => paintPlaylist(v));
-
-  console.log("playlistFE", playlistFE);
 };
 
 const handleOneSongRepeat = () => {
@@ -198,7 +171,7 @@ const handleNextBtnClick = (e) => {
   const { id } = musicPlayer.dataset;
   const currIndex = playlistFE.findIndex((v) => v == id);
   const nextIndex =
-    currIndex + 1 > playlistFE.length
+    currIndex + 1 >= playlistFE.length
       ? currIndex + 1 - playlistFE.length
       : currIndex + 1;
   const nextSongId = playlistFE[nextIndex];
