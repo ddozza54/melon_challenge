@@ -1,5 +1,3 @@
-import { async } from "regenerator-runtime";
-
 const audio = document.getElementById("mainAudio");
 const musicPlayer = document.getElementById("musicPlayer");
 const playBtn = document.getElementById("play");
@@ -18,10 +16,12 @@ const player_lyrics = document.querySelector(".player_lyrics");
 const player_playlist = document.querySelector(".player_playlist");
 const btn_prev = document.getElementById("prevSong");
 const btn_next = document.getElementById("nextSong");
-const removeBtn = document.querySelector(".removeBtn_playlist");
+const suffleBtn = document.getElementById("suffle");
 
 let volumeValue = 0.5;
 audio.volume = volumeValue;
+let isSuffle = false;
+let isRepeatAll = true;
 
 let playlistFE = JSON.parse(musicPlayer.dataset.playlist);
 console.log("init playlistFE", playlistFE);
@@ -120,7 +120,39 @@ const handleOneSongRepeat = () => {
     repeatBtn.style.color = "chartreuse";
   } else {
     audio.removeAttribute("loop");
-    repeatBtn.style.color = "black";
+  }
+};
+// const handleOneSongRepeat = () => {
+//   if (repeatBtn.style.color !== "chartreuse" && isRepeatAll === false) {
+//     console.log("1곡 반복 켜짐");
+//     isRepeatAll = false;
+//     // audio.setAttribute("loop", true);
+//     repeatBtn.style.color = "chartreuse";
+//   } else if (repeatBtn.style.color === "chartreuse" && isRepeatAll === false) {
+//     console.log("모두 반복 켜짐");
+//     isRepeatAll = true;
+//     repeatBtn.innerText = "All";
+//     // audio.removeAttribute("loop");
+//     repeatBtn.style.color = "chartreuse";
+//   } else if (repeatBtn.style.color === "chartreuse" && isRepeatAll === true) {
+//     console.log("모든 반복 꺼짐 (초기 상태)");
+//     isRepeatAll = false;
+//     repeatBtn.innerText = "1";
+//     // audio.setAttribute("loop", false);
+//     repeatBtn.style.color = "black";
+//   }
+// };
+
+const handleSuffle = () => {
+  const randomIndex = Math.floor(Math.random() * playlistFE.length);
+  console.log(randomIndex);
+  if (suffleBtn.style.color !== "chartreuse") {
+    isSuffle = true;
+    suffleBtn.style.color = "chartreuse";
+    redirectOtherSong(randomIndex);
+  } else {
+    isSuffle = false;
+    suffleBtn.style.color = "black";
   }
 };
 
@@ -155,15 +187,20 @@ const audioFinished = async () => {
   // });
 };
 
+const redirectOtherSong = (SongIndex) => {
+  const songId = playlistFE[SongIndex];
+  location.href = `/music/${songId}`;
+};
+
 const handlePrevBtnClick = (e) => {
   console.log("prev");
   const { id } = musicPlayer.dataset;
   const currIndex = playlistFE.findIndex((v) => v == id);
   const prevIndex =
     currIndex - 1 < 0 ? currIndex - 1 + playlistFE.length : currIndex - 1;
-  const prevSongId = playlistFE[prevIndex];
-  console.log(prevSongId);
-  location.href = `/music/${prevSongId}`;
+  if (prevIndex) {
+    redirectOtherSong(prevIndex);
+  }
 };
 
 const handleNextBtnClick = (e) => {
@@ -174,9 +211,9 @@ const handleNextBtnClick = (e) => {
     currIndex + 1 >= playlistFE.length
       ? currIndex + 1 - playlistFE.length
       : currIndex + 1;
-  const nextSongId = playlistFE[nextIndex];
-  console.log(nextSongId);
-  location.href = `/music/${nextSongId}`;
+  if (nextIndex) {
+    redirectOtherSong(nextIndex);
+  }
 };
 
 audio.addEventListener("ended", audioFinished);
@@ -190,5 +227,6 @@ audio.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("change", handleTimeLine);
 likeBtn.addEventListener("click", handlePlaylist);
 repeatBtn.addEventListener("click", handleOneSongRepeat);
+suffleBtn.addEventListener("click", handleSuffle);
 lyricsIcon.addEventListener("click", handleLyricsClick);
 listIcon.addEventListener("click", handleListIconClick);
