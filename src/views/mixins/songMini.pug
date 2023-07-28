@@ -1,0 +1,9 @@
+mixin songMini(song)
+    li.song
+        //- img(src='/'+song.imgpath)
+        img(src=song.imgpath)
+        div.title
+            h4=song.title
+            span=song.artist
+        a.a_url(href=`/music/${song.id}`)
+            i.fas.fa-play-circle

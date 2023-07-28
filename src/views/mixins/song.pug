@@ -1,0 +1,17 @@
+mixin song(song)
+    div.song
+        //- img(src='/'+song.imgpath)
+        img(src=song.imgpath)
+        div.song_title
+            h4
+                a(href=`/music/${song.id}`)=song.title
+            span=song.artist
+            p=song.description
+        span.youtubeIcon
+            i.fab.fa-youtube
+        span.songView 
+            i.fas.fa-headphones  #{song.views}
+        - if (playlist.includes(`${song._id}`))
+            button.inPlaylistBtn(id=`likeBtn_${song._id}`,title="플레이리스트에서 제거하기") ✔️
+        - else 
+            button.notInPlaylistBtn(id=`likeBtn_${song._id}`,title="플레이리스트에 추가하기") 👍

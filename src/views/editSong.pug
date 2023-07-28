@@ -1,0 +1,11 @@
+extends baseNav
+
+block content
+    div.edit
+        h4=pageTitle
+        form(method ="POST")
+            input(name="title", placeholder="Title", required, type="text", value=nowPlayingSong.title)
+            input(name="artist", placeholder="Artist", required, type="text", value=nowPlayingSong.artist)
+            input(name="description", placeholder="Description", type="text", value=nowPlayingSong.description)
+            textarea#lyrics(name="lyrics",wrap="hard",required, cols="100", rows="30",placeholder="Lyrics",value=nowPlayingSong.lyrics, resize="none") 
+            input(type="submit", value="Edit Music")

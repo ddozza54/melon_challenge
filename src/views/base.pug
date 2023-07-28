@@ -1,0 +1,24 @@
+doctype html
+html(lang="ko")
+    head
+        meta(name="viewport" content="width=device-width, inital-scale=1.0")
+        title #{pageTitle} | #{siteName}
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+        link(rel="stylesheet", href="/static/css/styles.css")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(rel="short icon" href="https://favicon-generator.org/favicon-generator/htdocs/favicons/2014-12-02/b1ab56f7ff5e254f6704a6729cdc47ae.ico")
+        link(href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet")
+
+
+    body
+        section.app
+            include partials/header
+
+            main
+                block navBlock           
+                block content 
+        img#backImg(src="https://p4.wallpaperbetter.com/wallpaper/738/71/649/flowers-mountains-distance-nature-wallpaper-preview.jpg")
+
+    script(src="/static/js/main.js") 
+    block scripts

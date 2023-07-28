@@ -1,0 +1,10 @@
+if !loggedIn
+    p.errorMessage 플레이리스트는 로그인 후 이용 가능합니다.
+    span#goLoginBtn
+        a(href="/login") 로그인 하러 가기 &rarr;
+else
+    div.songList
+        each song in songs
+            +songMini(song)
+        else
+            p.errorMessage 플레이리스트가 없습니다. 👍를 눌러서 노래를 추가해보세요.

@@ -1,0 +1,77 @@
+extends baseNav
+include mixins/songMini
+
+block content
+    section#playerPage
+        div#musicPlayer(data-id=song._id)&attributes({'data-playlist': playlist})
+            div.listLikeBtns 
+                span
+                    a(href=`/music`) &larr; 전체 목록으로 돌아가기
+                
+                - if (playlist.includes(`${song._id}`))
+                    button.likeBtn(title="플레이리스트에서 제거하기") ✔️
+                - else 
+                    button.likeBtn(title="플레이리스트에 추가하기") 👍
+            div.imgdiv
+                //- img(src='/'+song.imgpath)
+                img(src=song.imgpath)
+
+            div.playerControler
+                h1=song.title
+                h2=song.artist
+                div.muteAnsLyrics
+                    span#muteHoverIcon
+                        i.fas.fa-volume-down.fa-lg
+                            div#muteBox
+                                button#muteBtn
+                                    i.fas.fa-volume-up.fa-lg#muteBtnIcon
+                                input(type="range", step="0.1",value=0.5, min="0", max="1")#volume
+                    div.LyricsAndList
+                        span.lyricsIcon
+                            i.far.fa-file-alt
+                        span.listIcon
+                            i.fas.fa-list
+
+
+                div.audioControlerBtns
+                    button#suffle
+                        i.fas.fa-random
+                    button#prevSong
+                        i.fas.fa-angle-double-left.lg
+                    button#play
+                        i#playBtnIcon.fas.fa-pause-circle.lg
+                    button#nextSong
+                        i.fas.fa-angle-double-right.lg
+                    button#repeat(title="반복듣기", loop=false)
+                        span 1
+                            i.fas.fa-undo-alt
+                input(type="range", step="1", value="0", min="0")#timeline
+                div.playerTime
+                    span#currentTime 00:00
+                    span#totalTime 03:25
+                //- audio#mainAudio(src='/'+song.songpath autoplay ) 
+                audio#mainAudio(src=song.songpath autoplay ) 
+
+
+
+        div.playerPage_right
+            section.player_lyrics.hidden
+                if(isMaster)
+                    span.editBtn
+                        a(href=`/music/${song._id}/edit`) Edit Song 
+                else 
+                    span 가사
+                div#lyricsBox
+                    p=song.lyrics
+
+            section.player_playlist
+                h1 현재 재생 목록
+                div.playlist
+                    include partials/playlist_list_mini
+
+
+
+
+
+block scripts
+    script(src="/static/js/musicPlayer.js")

@@ -1,0 +1,15 @@
+extends baseNav
+
+block content
+    div.upload
+        h4 Upload Music
+        form(method ="POST", enctype="multipart/form-data")
+            label(for="imgfile") Thumbnail File
+            input(type="file", id="imgfile", name="imgfile", accept=".jpg,.png,.webp" )
+            label(for="songfile") Song File
+            input(type="file", id="songfile", name="songfile", accept="audio/*" )
+            input(name="title", placeholder="Title", required, type="text")
+            input(name="artist", placeholder="Artist", required, type="text")
+            input(name="description", placeholder="Description", type="text")
+            input(name="lyrics", placeholder="Lyrics", required, type="text")
+            input(type="submit", value="Upload Music")
