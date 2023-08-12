@@ -12,7 +12,7 @@
 
 이미지를 클릭 시, 배포한 페이지로 이동이 가능합니다.
 
-<a href="https://youtube.com/playlist?list=PL1nP78IpsXsMam6_mF2rto1RgxQH_t26K"/>
+<a href="https://youtube.com/playlist?list=PL1nP78IpsXsMam6_mF2rto1RgxQH_t26K" target="_blank"/>
  <span> &rarr; 한사랑 산악회 원본 유튜브 바로가기 </span>
 
 <br>
